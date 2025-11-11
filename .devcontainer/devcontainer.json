@@ -1,0 +1,23 @@
+{
+  "name": "Pokemon Guide",
+  "build": {
+    "dockerfile": "Dockerfile"
+  },
+  "runArgs": ["--name", "pokemon-guide-devcontainer"],
+  "postCreateCommand": "npm install -g @angular/cli@20.1.3",
+  "mounts": [
+    "source=pokemon-guide-node_modules,target=${containerWorkspaceFolder}/node_modules,type=volume"
+  ],
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "esbenp.prettier-vscode", //prettier
+        "mhutchie.git-graph", // git graph
+        "seatonjiang.gitmoji-vscode", // gitmoji
+        "gruntfuggly.todo-tree", // todo tree
+        "bradlc.vscode-tailwindcss", //tailwind intellisense
+        "angular.ng-template"
+      ]
+    }
+  }
+}
