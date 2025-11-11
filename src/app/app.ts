@@ -1,12 +1,25 @@
-import { Component, signal } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import { AsyncPipe } from '@angular/common';
+import { Component } from '@angular/core';
+import { Observable } from 'rxjs';
+import { Ability } from './components/ability/ability';
+import { Item } from './components/item/item';
+import { Move } from './components/move/move';
+import { Nature } from './components/nature/nature';
+import { NavItemElement } from './components/navbar/models/navitem';
+import { Navbar } from './components/navbar/navbar';
+import { NavbarService } from './components/navbar/navbar.service';
+import { Pokemon } from './components/pokemon/pokemon';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet],
   templateUrl: './app.html',
-  styleUrl: './app.scss'
+  imports: [Navbar, AsyncPipe, Pokemon, Nature, Move, Ability, Item],
+  styleUrl: './app.scss',
 })
 export class App {
-  protected readonly title = signal('ultimate-pokemon-guide');
+  public navItem$: Observable<NavItemElement>;
+
+  public constructor(private readonly navbar: NavbarService) {
+    this.navItem$ = this.navbar.getSelectedItem$();
+  }
 }

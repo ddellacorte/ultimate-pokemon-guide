@@ -1,0 +1,33 @@
+<div class="container-xl">
+  <div class="p-2 d-flex flex-wrap gap-3">
+    @for (pokemon of pokemons; track $index) {
+    <div
+      role="button"
+      class="card text-center d-flex align-items-center"
+      style="width: 10rem"
+    >
+      <p>{{ pokemon.id | padNumber }}</p>
+      <img
+        [src]="pokemon.sprites.front_default"
+        [width]="100"
+        [alt]="pokemon.name"
+      />
+      <div class="card-body">
+        <h6 class="card-title">{{ pokemon.name | titlecase }}</h6>
+        <div class="d-flex gap-1 justify-content-center mb-2">
+          @for (type of pokemon.types; track $index) {
+          <span
+            class="badge text-capitalize"
+            [ngStyle]="{
+              'background-color': type.type.name | typeColor,
+              color: '#fff'
+            }"
+            >{{ type.type.name }}</span
+          >
+          }
+        </div>
+      </div>
+    </div>
+    }
+  </div>
+</div>
