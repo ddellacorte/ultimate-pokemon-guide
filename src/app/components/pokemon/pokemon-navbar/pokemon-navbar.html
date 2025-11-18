@@ -1,0 +1,67 @@
+<nav class="navbar navbar-expand-lg bg-body-tertiary">
+  <div class="container-fluid">
+    <span>Filtri</span>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarFilters" aria-controls="navbarFilters" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarFilters">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <!-- <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="#">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Link</a>
+        </li> -->
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Generations
+          </a>
+          <ul class="dropdown-menu" (click)="$event.stopPropagation()">
+            <li><a class="dropdown-item" (click)="addGenerationFilter('i')">First</a></li>
+            <li><a class="dropdown-item" (click)="addGenerationFilter('ii')">Second</a></li>
+            <li><a class="dropdown-item" (click)="addGenerationFilter('iii')">third</a></li>
+            <li><a class="dropdown-item" (click)="addGenerationFilter('iv')">Fourth</a></li>
+            <li><a class="dropdown-item" (click)="addGenerationFilter('v')">Fifth</a></li>
+            <li><a class="dropdown-item" (click)="addGenerationFilter('vi')">Sixth</a></li>
+            <li><a class="dropdown-item" (click)="addGenerationFilter('vii')">Seventh</a></li>
+            <li><a class="dropdown-item" (click)="addGenerationFilter('viii')">Eighth</a></li>
+            <li><a class="dropdown-item" (click)="addGenerationFilter('ix')">Ninth</a></li>
+            <!-- <li><hr class="dropdown-divider"></li> -->
+          </ul>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Types
+          </a>
+          <ul class="dropdown-menu" (click)="$event.stopPropagation()">
+            <li><a class="dropdown-item" (click)="addTypeFilter('normal')">Normal</a></li>
+            <li><a class="dropdown-item" (click)="addTypeFilter('fire')">Fire</a></li>
+            <li><a class="dropdown-item" (click)="addTypeFilter('water')">Water</a></li>
+            <li><a class="dropdown-item" (click)="addTypeFilter('electric')">Electric</a></li>
+            <li><a class="dropdown-item" (click)="addTypeFilter('grass')">Grass</a></li>
+            <li><a class="dropdown-item" (click)="addTypeFilter('ice')">Ice</a></li>
+            <li><a class="dropdown-item" (click)="addTypeFilter('fithing')">Fighting</a></li>
+            <li><a class="dropdown-item" (click)="addTypeFilter('poison')">Poison</a></li>
+            <li><a class="dropdown-item" (click)="addTypeFilter('ground')">Ground</a></li>
+            <li><a class="dropdown-item" (click)="addTypeFilter('flying')">Flying</a></li>
+            <li><a class="dropdown-item" (click)="addTypeFilter('psychic')">Psychic</a></li>
+            <li><a class="dropdown-item" (click)="addTypeFilter('bug')">Bug</a></li>
+            <li><a class="dropdown-item" (click)="addTypeFilter('rock')">Rock</a></li>
+            <li><a class="dropdown-item" (click)="addTypeFilter('ghost')">Ghost</a></li>
+            <li><a class="dropdown-item" (click)="addTypeFilter('dragon')">Dragon</a></li>
+            <li><a class="dropdown-item" (click)="addTypeFilter('dark')">Dark</a></li>
+            <li><a class="dropdown-item" (click)="addTypeFilter('steel')">Steel</a></li>
+            <li><a class="dropdown-item" (click)="addTypeFilter('fairy')">Fairy</a></li>
+          </ul>
+        </li>
+        <!-- <li class="nav-item">
+          <a class="nav-link disabled" aria-disabled="true">Disabled</a>
+        </li> -->
+      </ul>
+      <form class="d-flex" role="search">
+        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search"/>
+        <button class="btn btn-outline-success" type="submit">Search</button>
+      </form>
+    </div>
+  </div>
+</nav>

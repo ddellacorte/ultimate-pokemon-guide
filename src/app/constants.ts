@@ -1,4 +1,5 @@
 export const POKEAPIURL = 'https://pokeapi.co/api/v2/';
+export const POKEAPIGRAPHURL =`https://graphql.pokeapi.co/v1beta2`;
 export const TYPE_COLORS: { [key: string]: string } = {
   normal: '#A8A77A',
   fire: '#EE8130',

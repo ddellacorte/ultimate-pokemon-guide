@@ -1,31 +1,33 @@
+<app-pokemon-navbar></app-pokemon-navbar>
 <div class="container-xl">
-  <div class="p-2 d-flex flex-wrap gap-3">
+  <div class="p-2 d-flex justify-content-center flex-wrap gap-3">
     @for (pokemon of pokemons; track $index) {
     <div
       role="button"
-      class="card text-center d-flex align-items-center"
-      style="width: 10rem"
+      class="card text-center d-flex flex-row align-items-center"
+      style="width: 25rem"
+      [ngStyle]="getCardStyle(pokemon)"
     >
-      <p>{{ pokemon.id | padNumber }}</p>
+      <span style="width: 4rem">{{ pokemon.id | padNumber }}</span>
       <img
-        [src]="pokemon.sprites.front_default"
-        [width]="100"
+        [src]="pokemon.pokemonsprites[0].sprites.front_default"
         [alt]="pokemon.name"
+        style="width: 4rem"
       />
-      <div class="card-body">
-        <h6 class="card-title">{{ pokemon.name | titlecase }}</h6>
-        <div class="d-flex gap-1 justify-content-center mb-2">
-          @for (type of pokemon.types; track $index) {
-          <span
-            class="badge text-capitalize"
-            [ngStyle]="{
-              'background-color': type.type.name | typeColor,
-              color: '#fff'
-            }"
-            >{{ type.type.name }}</span
-          >
-          }
-        </div>
+      <h6 class="card-title" style="width: 9rem">
+        {{ pokemon.name | titlecase }}
+      </h6>
+      <div class="d-flex gap-1 justify-content-center mb-2">
+        @for (type of pokemon.pokemontypes; track $index) {
+        <span
+          class="badge text-capitalize"
+          [ngStyle]="{
+            'background-color': type.type.name | typeColor,
+            color: '#fff'
+          }"
+          >{{ type.type.name }}</span
+        >
+        }
       </div>
     </div>
     }
