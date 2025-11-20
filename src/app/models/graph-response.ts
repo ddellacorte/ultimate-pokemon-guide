@@ -8,6 +8,6 @@ export interface GraphDataResponse<T> {
   data: T;
 }
 
-export interface PokemonQueryResult {
+export interface PokemonListQueryResult {
   pokemon: PokemonCardDto[];
 }

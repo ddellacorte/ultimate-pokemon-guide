@@ -13,5 +13,9 @@ html {
     .container-xxl {
       max-width: 1700px !important;
     }
+
+    .dropdown-item {
+      cursor: pointer;
+    }
   }
 }

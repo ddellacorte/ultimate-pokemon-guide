@@ -1,7 +1,7 @@
 import { InMemoryCache } from '@apollo/client/core';
 import { APOLLO_OPTIONS } from 'apollo-angular';
 import { HttpLink } from 'apollo-angular/http';
-import { POKEAPIGRAPHURL } from '../constants';
+import { POKEAPIGRAPHURL } from '../utils/constants';
 
 export function apolloFactory(httpLink: HttpLink) {
   return {
@@ -11,9 +11,3 @@ export function apolloFactory(httpLink: HttpLink) {
     }),
   };
 }
-
-export const apolloProvider = {
-  provide: APOLLO_OPTIONS,
-  useFactory: apolloFactory,
-  deps: [HttpLink],
-};

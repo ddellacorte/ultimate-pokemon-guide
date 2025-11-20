@@ -1,0 +1,31 @@
+@if (pokemon) {
+<nav class="navbar navbar-expand-lg bg-body-tertiary">
+  <div class="container-fluid">
+    <div class="d-flex align-items-center gap-1">
+      <button class="btn d-flex align-items-center gap-2" (click)="back()">
+        <img src="/icons/back.png" height="20" title="Back" />
+        <span> Back to Pokemon list </span>
+      </button>
+    </div>
+    <button
+      class="navbar-toggler"
+      type="button"
+      data-bs-toggle="collapse"
+      data-bs-target="#navbarPokemon"
+      aria-controls="navbarPokemon"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+    >
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div
+      class="collapse navbar-collapse justify-content-center"
+      id="navbarPokemon"
+    >
+      <div class="d-flex align-items-center gap-1">
+        <span>{{ pokemon.id | padNumber}} {{ pokemon.name | uppercase }}</span>
+      </div>
+    </div>
+  </div>
+</nav>
+}

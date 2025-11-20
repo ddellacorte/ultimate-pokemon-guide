@@ -1,57 +1,77 @@
 <nav class="navbar navbar-expand-lg bg-body-tertiary">
   <div class="container-fluid">
-    <span>Filtri</span>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarFilters" aria-controls="navbarFilters" aria-expanded="false" aria-label="Toggle navigation">
+    <div class="d-flex align-items-center gap-1">
+      <span> Filtri </span>
+      @if (filterCounter > 0) {
+      <span class="badge text-bg-primary" role="button">{{
+        filterCounter
+      }}</span>
+      <span role="button" (click)="clearFilters()">
+        <img src="/icons/dust.png" height="20" title="Clear filters" />
+      </span>
+      }
+    </div>
+    <button
+      class="navbar-toggler"
+      type="button"
+      data-bs-toggle="collapse"
+      data-bs-target="#navbarFilters"
+      aria-controls="navbarFilters"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+    >
       <span class="navbar-toggler-icon"></span>
     </button>
-    <div class="collapse navbar-collapse" id="navbarFilters">
-      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-        <!-- <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="#">Home</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Link</a>
-        </li> -->
+    <div
+      class="collapse navbar-collapse justify-content-center"
+      id="navbarFilters"
+    >
+      <ul class="navbar-nav mb-2 mb-lg-0">
         <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+          <a
+            class="nav-link dropdown-toggle"
+            href="#"
+            role="button"
+            data-bs-toggle="dropdown"
+            aria-expanded="false"
+          >
             Generations
           </a>
           <ul class="dropdown-menu" (click)="$event.stopPropagation()">
-            <li><a class="dropdown-item" (click)="addGenerationFilter('i')">First</a></li>
-            <li><a class="dropdown-item" (click)="addGenerationFilter('ii')">Second</a></li>
-            <li><a class="dropdown-item" (click)="addGenerationFilter('iii')">third</a></li>
-            <li><a class="dropdown-item" (click)="addGenerationFilter('iv')">Fourth</a></li>
-            <li><a class="dropdown-item" (click)="addGenerationFilter('v')">Fifth</a></li>
-            <li><a class="dropdown-item" (click)="addGenerationFilter('vi')">Sixth</a></li>
-            <li><a class="dropdown-item" (click)="addGenerationFilter('vii')">Seventh</a></li>
-            <li><a class="dropdown-item" (click)="addGenerationFilter('viii')">Eighth</a></li>
-            <li><a class="dropdown-item" (click)="addGenerationFilter('ix')">Ninth</a></li>
+            @for (gen of generations; track $index) {
+            <li>
+              <a
+                class="dropdown-item"
+                (click)="addGenerationFilter(gen.symbol)"
+                [class.active]="generationFilter.includes(gen.symbol)"
+                >{{ gen.name }}</a
+              >
+            </li>
+            }
             <!-- <li><hr class="dropdown-divider"></li> -->
           </ul>
         </li>
         <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+          <a
+            class="nav-link dropdown-toggle"
+            href="#"
+            role="button"
+            data-bs-toggle="dropdown"
+            aria-expanded="false"
+          >
             Types
           </a>
           <ul class="dropdown-menu" (click)="$event.stopPropagation()">
-            <li><a class="dropdown-item" (click)="addTypeFilter('normal')">Normal</a></li>
-            <li><a class="dropdown-item" (click)="addTypeFilter('fire')">Fire</a></li>
-            <li><a class="dropdown-item" (click)="addTypeFilter('water')">Water</a></li>
-            <li><a class="dropdown-item" (click)="addTypeFilter('electric')">Electric</a></li>
-            <li><a class="dropdown-item" (click)="addTypeFilter('grass')">Grass</a></li>
-            <li><a class="dropdown-item" (click)="addTypeFilter('ice')">Ice</a></li>
-            <li><a class="dropdown-item" (click)="addTypeFilter('fithing')">Fighting</a></li>
-            <li><a class="dropdown-item" (click)="addTypeFilter('poison')">Poison</a></li>
-            <li><a class="dropdown-item" (click)="addTypeFilter('ground')">Ground</a></li>
-            <li><a class="dropdown-item" (click)="addTypeFilter('flying')">Flying</a></li>
-            <li><a class="dropdown-item" (click)="addTypeFilter('psychic')">Psychic</a></li>
-            <li><a class="dropdown-item" (click)="addTypeFilter('bug')">Bug</a></li>
-            <li><a class="dropdown-item" (click)="addTypeFilter('rock')">Rock</a></li>
-            <li><a class="dropdown-item" (click)="addTypeFilter('ghost')">Ghost</a></li>
-            <li><a class="dropdown-item" (click)="addTypeFilter('dragon')">Dragon</a></li>
-            <li><a class="dropdown-item" (click)="addTypeFilter('dark')">Dark</a></li>
-            <li><a class="dropdown-item" (click)="addTypeFilter('steel')">Steel</a></li>
-            <li><a class="dropdown-item" (click)="addTypeFilter('fairy')">Fairy</a></li>
+            @for (type of types; track $index) {
+            <li>
+              <a
+                class="dropdown-item"
+                (click)="addTypeFilter(type.name)"
+                [class.active]="typeFilter.includes(type.name)"
+                >{{ type.name | titlecase }}</a
+              >
+            </li>
+            }
           </ul>
         </li>
         <!-- <li class="nav-item">
@@ -59,8 +79,21 @@
         </li> -->
       </ul>
       <form class="d-flex" role="search">
-        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search"/>
-        <button class="btn btn-outline-success" type="submit">Search</button>
+        <input
+          class="form-control me-2"
+          type="search"
+          placeholder="Search"
+          aria-label="Search"
+          [(ngModel)]="search"
+          [ngModelOptions]="{ standalone: true }"
+        />
+        <button
+          class="btn btn-outline-success"
+          type="button"
+          (click)="applyFilter()"
+        >
+          <img src="/icons/go.png" alt="Go" height="40" />
+        </button>
       </form>
     </div>
   </div>

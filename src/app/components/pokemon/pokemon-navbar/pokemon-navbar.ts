@@ -1,15 +1,25 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
+import { FormsModule } from '@angular/forms';
+import { Generation } from '../../../models/generation.model';
+import { Type } from '../../../models/type';
+import { GENERATIONS, TYPES } from '../../../utils/constants';
+import { PokemonFilter } from '../models/pokemon-filter.model';
 
 @Component({
   selector: 'app-pokemon-navbar',
-  imports: [CommonModule],
+  imports: [CommonModule, FormsModule],
   templateUrl: './pokemon-navbar.html',
   styleUrl: './pokemon-navbar.scss',
 })
 export class PokemonNavbar {
+  public generations: Generation[] = GENERATIONS;
+  public types: Type[] = TYPES;
+  public search = '';
   public generationFilter: string[] = [];
   public typeFilter: string[] = [];
+
+  @Output() public onFilterChange = new EventEmitter<PokemonFilter>();
 
   public addGenerationFilter(gen: string): void {
     const index = this.generationFilter.indexOf(gen);
@@ -21,13 +31,40 @@ export class PokemonNavbar {
   }
 
   public addTypeFilter(type: string): void {
-    console.log(type);
-    
     const index = this.typeFilter.indexOf(type);
     if (index === -1) {
       this.typeFilter.push(type);
     } else {
       this.typeFilter.splice(index, 1);
     }
+  }
+
+  public applyFilter(): void {
+    const filter: PokemonFilter = {};
+    if (this.generationFilter.length > 0) {
+      filter.generations = this.generationFilter;
+    }
+    if (this.typeFilter.length > 0) {
+      filter.types = this.typeFilter;
+    }
+    if (this.search.trim().length > 0) {
+      filter.search = this.search.trim();
+    }
+    this.onFilterChange.emit(filter);
+  }
+
+  public clearFilters(): void {
+    this.generationFilter = [];
+    this.typeFilter = [];
+    this.search = '';
+    this.applyFilter();
+  }
+
+  public get filterCounter(): number {
+    return (
+      this.generationFilter.length +
+      this.typeFilter.length +
+      (this.search.trim().length > 0 ? 1 : 0)
+    );
   }
 }

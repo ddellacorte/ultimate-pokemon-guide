@@ -3,21 +3,7 @@
 </header>
 
 <main>
-  @switch (navItem$ | async) {
-    @case ('pokemon') {
-      <app-pokemon></app-pokemon>
-    }
-    @case ('moves') {
-      <app-move></app-move>
-    }
-    @case ('abilities') {
-      <app-ability></app-ability>
-    }
-    @case ('items') {
-      <app-item></app-item>
-    }
-    @case ('natures') {
-      <app-nature></app-nature>
-    }
-  }
+  <div class="container-xl">
+    <router-outlet></router-outlet>
+  </div>
 </main>

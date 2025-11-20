@@ -1,25 +1,22 @@
 import { Injectable } from '@angular/core';
+import { Router } from '@angular/router';
 import { NavItem, NavItemElement } from './models/navitem';
-import { BehaviorSubject, Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
 })
 export class NavbarService {
-  private navItem$ = new BehaviorSubject<NavItemElement>(NavItemElement.POKEMON);
+  public constructor(private readonly router: Router) {}
 
-  private readonly items: NavItem[] = Object.values(NavItemElement).map((element) => ({
-    label: element,
-    image: `images/${element}-icon.png`, // costruisci dinamicamente il path dell’immagine
-    action: () => {this.navItem$.next(element); console.log({element});
-    },
-  }));
+  private readonly items: NavItem[] = Object.values(NavItemElement).map(
+    (element) => ({
+      label: element,
+      image: `images/${element}-icon.png`, // costruisci dinamicamente il path dell’immagine
+      action: () => this.router.navigateByUrl(element.toLowerCase()),
+    })
+  );
 
   public getItems(): NavItem[] {
     return this.items;
-  }
-
-  public getSelectedItem$(): Observable<NavItemElement> {
-    return this.navItem$.asObservable();
   }
 }

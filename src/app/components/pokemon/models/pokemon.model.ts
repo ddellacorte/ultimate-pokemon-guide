@@ -5,6 +5,10 @@ export interface PokemonCardDto {
   pokemonsprites: PokemonCardSprite[];
 }
 
+export interface PokemonDto extends PokemonCardDto {
+  
+}
+
 export interface PokemonCardType {
   type: PokemonType;
 }

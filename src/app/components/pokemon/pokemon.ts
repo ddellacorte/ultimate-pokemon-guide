@@ -1,9 +1,11 @@
 import { CommonModule, TitleCasePipe } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
-import { TYPE_COLORS } from '../../constants';
+import { Router } from '@angular/router';
 import { PadNumberPipe } from '../../pipes/pad-number.pipe';
 import { TypeColorPipe } from '../../pipes/type-color.pipe';
-import { PokemonCardDto } from './models/pokemon.model';
+import { TYPES } from '../../utils/constants';
+import { PokemonFilter } from './models/pokemon-filter.model';
+import { PokemonCardDto, PokemonCardType } from './models/pokemon.model';
 import { PokemonNavbar } from './pokemon-navbar/pokemon-navbar';
 import { PokemonService } from './pokemon.service';
 
@@ -22,62 +24,52 @@ import { PokemonService } from './pokemon.service';
 export class Pokemon implements OnInit {
   public pokemons: PokemonCardDto[] = [];
 
-  public constructor(private readonly pokemonService: PokemonService) {}
+  public constructor(
+    private readonly pokemonService: PokemonService,
+    private readonly router: Router
+  ) {}
 
   public ngOnInit(): void {
     this.pokemonService
-      .getPokemonListGraph(50, 0)
+      .getPokemonListGraph(151, 0)
       .subscribe((result: PokemonCardDto[] | undefined) => {
         if (result) this.pokemons = result;
       });
   }
 
-  getCardStyle(pokemon: any): {
+  public getCardStyle(pokemon: PokemonCardDto): {
     [className: string]: string;
   } {
-    const types = pokemon.pokemontypes.map((t: any) => t.type.name);
+    const types = pokemon.pokemontypes.map((t: PokemonCardType) => t.type.name);
 
     if (types.length === 1) {
-      const c = TYPE_COLORS[types[0]];
+      const c = TYPES.find((t) => t.name === types[0])?.color || '#777';
       return {
-        // border: `3px solid ${c}`,
         '--border-gradient': c,
         background: c + '33', // aggiungo trasparenza (33 = ~20%)
         backdropFilter: 'brightness(1.1)',
       };
     }
 
-    const c1 = TYPE_COLORS[types[0]];
-    const c2 = TYPE_COLORS[types[1]];
+    const c1 = TYPES.find((t) => t.name === types[0])?.color || '#777';
+    const c2 = TYPES.find((t) => t.name === types[1])?.color || '#777';
 
     return {
-      // border: '3px solid transparent',
-      // borderImage: `linear-gradient(90deg, ${c1}, ${c2}) 1`,
       '--border-gradient': `linear-gradient(45deg, ${c1}, ${c2})`,
       background: `linear-gradient(45deg, ${c1}55, ${c2}55)`,
       backdropFilter: 'brightness(1.15)',
     };
   }
 
-  // getCardBackground(pokemon: PokemonDto) {
-  //   const types = pokemon.types.map((t: any) => t.type.name);
+  public search(filter: PokemonFilter): void {
+    this.pokemonService
+      .getPokemonListGraph(250, 0, filter)
+      .subscribe((result: PokemonCardDto[] | undefined) => {
+        if (result) this.pokemons = result;
+      });
+  }
 
-  //   // Pokémon monotipo → sfondo uniforme
-  //   if (types.length === 1) {
-  //     const c = TYPE_COLORS[types[0]];
-  //     return {
-  //       background: c + '33', // aggiungo trasparenza (33 = ~20%)
-  //       backdropFilter: 'brightness(1.1)',
-  //     };
-  //   }
-
-  //   // Pokémon due tipi → gradiente
-  //   const c1 = TYPE_COLORS[types[0]];
-  //   const c2 = TYPE_COLORS[types[1]];
-
-  //   return {
-  //     background: `linear-gradient(45deg, ${c1}55, ${c2}55)`,
-  //     backdropFilter: 'brightness(1.15)',
-  //   };
-  // }
+  public selectPokemon(pokemon: PokemonCardDto): void {
+    this.router.navigateByUrl(`pokemon/${pokemon.id}`);
+  }
 }
