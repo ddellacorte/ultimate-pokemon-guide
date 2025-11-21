@@ -1,4 +1,4 @@
-import { PokemonCardDto } from "../components/pokemon/models/pokemon.model";
+import { PokemonCardDto } from "../pages/pokemon/models/pokemon.model";
 
 export interface GraphResponse<T> {
   result: GraphDataResponse<T>;

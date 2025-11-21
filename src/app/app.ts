@@ -1,11 +1,21 @@
 import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
+import { Loader } from './components/loader/loader';
 import { Navbar } from './components/navbar/navbar';
+import { Observable } from 'rxjs';
+import { LoaderService } from './components/loader/loader.service';
+import { AsyncPipe } from '@angular/common';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.html',
-  imports: [Navbar, RouterOutlet],
+  imports: [Navbar, RouterOutlet, Loader, AsyncPipe],
   styleUrl: './app.scss',
 })
-export class App {}
+export class App {
+  loading$: Observable<boolean>;
+
+  constructor(private loader: LoaderService) {
+    this.loading$ = this.loader.loading$;
+  }
+}

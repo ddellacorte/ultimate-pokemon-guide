@@ -1,4 +1,4 @@
-import { PokemonFilter } from '../components/pokemon/models/pokemon-filter.model';
+import { PokemonFilter } from '../pages/pokemon/models/pokemon-filter.model';
 
 export class FilterUtils {
   public static buildPokemonWhereClause(filter: PokemonFilter): string {

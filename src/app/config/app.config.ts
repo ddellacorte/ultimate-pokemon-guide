@@ -17,7 +17,7 @@ import { provideRouter } from '@angular/router';
 import { provideApollo } from 'apollo-angular';
 import { HttpLink } from 'apollo-angular/http';
 import { routes } from '../app.routes';
-import { apolloFactory } from './graphql,config';
+import { apolloFactory } from './graphql.config';
 
 export const appConfig: ApplicationConfig = {
   providers: [

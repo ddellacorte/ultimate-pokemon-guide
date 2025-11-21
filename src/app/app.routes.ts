@@ -7,12 +7,12 @@ export const routes: Routes = [
       {
         path: '',
         loadComponent: () =>
-          import('./components/pokemon/pokemon').then((m) => m.Pokemon),
+          import('./pages/pokemon/pokemon').then((m) => m.Pokemon),
       },
       {
         path: ':id',
         loadComponent: () =>
-          import('./components/pokemon/pokemon-info/pokemon-info').then(
+          import('./pages/pokemon/pokemon-info/pokemon-info').then(
             (m) => m.PokemonInfo
           ),
       },
@@ -24,7 +24,7 @@ export const routes: Routes = [
       {
         path: '',
         loadComponent: () =>
-          import('./components/nature/nature').then((m) => m.Nature),
+          import('./pages/nature/nature').then((m) => m.Nature),
       },
       // {
       //   path: ':id',
@@ -41,7 +41,7 @@ export const routes: Routes = [
       {
         path: '',
         loadComponent: () =>
-          import('./components/move/move').then((m) => m.Move),
+          import('./pages/move/move').then((m) => m.Move),
       },
       // {
       //   path: ':id',
@@ -58,7 +58,7 @@ export const routes: Routes = [
       {
         path: '',
         loadComponent: () =>
-          import('./components/ability/ability').then((m) => m.Ability),
+          import('./pages/ability/ability').then((m) => m.Ability),
       },
       // {
       //   path: ':id',
@@ -75,7 +75,7 @@ export const routes: Routes = [
       {
         path: '',
         loadComponent: () =>
-          import('./components/item/item').then((m) => m.Item),
+          import('./pages/item/item').then((m) => m.Item),
       },
       // {
       //   path: ':id',
