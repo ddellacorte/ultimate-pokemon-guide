@@ -1,12 +1,12 @@
 import { Injectable } from '@angular/core';
-import { Router } from '@angular/router';
+import { CustomRouter } from '../../classes/custom-router';
 import { NavItem, NavItemElement } from './models/navitem';
 
 @Injectable({
   providedIn: 'root',
 })
 export class NavbarService {
-  public constructor(private readonly router: Router) {}
+  public constructor(private readonly router: CustomRouter) {}
 
   private readonly items: NavItem[] = Object.values(NavItemElement).map(
     (element) => ({

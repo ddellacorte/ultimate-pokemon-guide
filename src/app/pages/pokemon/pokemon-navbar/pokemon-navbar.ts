@@ -1,10 +1,10 @@
 import { CommonModule } from '@angular/common';
 import { Component, EventEmitter, Output } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { Generation } from '../../../models/generation.model';
-import { Type } from '../../../models/type';
-import { GENERATIONS, TYPES } from '../../../utils/constants';
 import { PokemonFilter } from '../models/pokemon-filter.model';
+import { GENERATIONS, TYPES } from '../../../shared/utils/constants';
+import { Generation } from '../../../shared/models/generation.model';
+import { Type } from '../../../shared/models/type';
 
 @Component({
   selector: 'app-pokemon-navbar',

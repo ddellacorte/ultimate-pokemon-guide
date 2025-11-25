@@ -6,12 +6,4 @@ import { Component } from '@angular/core';
   templateUrl: './loader.html',
   styleUrl: './loader.scss',
 })
-export class Loader {
-  show = false;
-
-  click() {
-    this.show = !this.show;
-    console.log('press');
-    
-  }
-}
+export class Loader {}

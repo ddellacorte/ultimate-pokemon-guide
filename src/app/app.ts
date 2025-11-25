@@ -1,9 +1,9 @@
 import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
-import { Loader } from './components/loader/loader';
-import { Navbar } from './components/navbar/navbar';
+import { Loader } from './shared/components/loader/loader';
+import { Navbar } from './shared/components/navbar/navbar';
 import { Observable } from 'rxjs';
-import { LoaderService } from './components/loader/loader.service';
+import { LoaderService } from './shared/components/loader/loader.service';
 import { AsyncPipe } from '@angular/common';
 
 @Component({

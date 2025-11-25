@@ -1,16 +1,20 @@
 import { Injectable } from '@angular/core';
 import { Apollo, gql } from 'apollo-angular';
-import { map, Observable } from 'rxjs';
-import { PokemonListQueryResult } from '../../models/graph-response';
-import { FilterUtils } from '../../utils/filter.utils';
+import { finalize, map, Observable } from 'rxjs';
+import { LoaderService } from '../../shared/components/loader/loader.service';
 import { PokemonFilter } from './models/pokemon-filter.model';
 import { PokemonCardDto, PokemonDto } from './models/pokemon.model';
+import { FilterUtils } from '../../shared/utils/filter.utils';
+import { PokemonListQueryResult } from '../../shared/models/graph-response';
 
 @Injectable({
   providedIn: 'root',
 })
 export class PokemonService {
-  public constructor(private readonly apollo: Apollo) {}
+  public constructor(
+    private readonly apollo: Apollo,
+    private readonly loader: LoaderService
+  ) {}
 
   public getPokemonListGraph(
     limit: number,
@@ -19,7 +23,7 @@ export class PokemonService {
   ): Observable<PokemonCardDto[]> {
     let whereClause = '{}';
     if (filter) whereClause = FilterUtils.buildPokemonWhereClause(filter);
-
+    this.loader.start();
     return this.apollo
       .query<PokemonListQueryResult>({
         query: gql`
@@ -48,7 +52,8 @@ export class PokemonService {
         map((result) => {
           if (result.data) return result.data.pokemon;
           return [];
-        })
+        }),
+        finalize(() => this.loader.stop())
       );
   }
 
