@@ -23,6 +23,7 @@ import { TYPES } from '../../shared/utils/constants';
 })
 export class Pokemon implements OnInit {
   public pokemons: PokemonCardDto[] = [];
+  public shiny = false;
 
   public constructor(
     private readonly pokemonService: PokemonService,

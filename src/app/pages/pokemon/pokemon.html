@@ -1,4 +1,7 @@
-<app-pokemon-navbar (onFilterChange)="search($event)"></app-pokemon-navbar>
+<app-pokemon-navbar
+  (onFilterChange)="search($event)"
+  (onShinyChange)="shiny = $event"
+></app-pokemon-navbar>
 <div class="p-2 d-flex justify-content-center flex-wrap gap-3">
   @for (pokemon of pokemons; track $index) {
   <button
@@ -9,7 +12,11 @@
   >
     <span style="width: 4rem">{{ pokemon.id | padNumber }}</span>
     <img
-      [src]="pokemon.pokemonsprites[0].sprites.front_default"
+      [src]="
+        shiny
+          ? pokemon.pokemonsprites[0].sprites.front_shiny
+          : pokemon.pokemonsprites[0].sprites.front_default
+      "
       [alt]="pokemon.name"
       style="width: 4rem"
     />

@@ -1,0 +1,125 @@
+@if (pokemon) {
+<nav class="navbar navbar-expand-lg bg-body-tertiary">
+  <div class="container-fluid">
+    <div class="d-flex align-items-center gap-1">
+      <button class="btn d-flex align-items-center gap-2" (click)="back()">
+        <img src="/icons/back.png" height="20" title="Back" />
+        <span> Back to Pokemon list </span>
+      </button>
+    </div>
+    <button
+      class="navbar-toggler"
+      type="button"
+      data-bs-toggle="collapse"
+      data-bs-target="#navbarPokemon"
+      aria-controls="navbarPokemon"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+    >
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div
+      class="collapse navbar-collapse justify-content-center"
+      id="navbarPokemon"
+    >
+      <div class="d-flex align-items-center gap-1">
+        <h1>{{ pokemon.id | padNumber }} {{ pokemon.name | uppercase }}</h1>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<div class="container-fluid p-2">
+  <div class="row">
+    <div class="col-12 col-md-6">
+      <div class="card">
+        <img
+          [src]="pokemon.pokemonsprites[0].sprites.front_default"
+          class="card-img-top w-50 mx-auto"
+          [alt]="pokemon.name"
+        />
+        <div class="card-body">
+          <p class="card-text">
+            {{ pokemon.pokemonspecy.pokemonspeciesflavortexts[0].flavor_text }}
+          </p>
+          <div class="d-flex flex-wrap mx-auto gap-3 justify-content-center">
+            @if (pokemon.pokemonsprites[0].sprites.front_female) {
+            <div class="card" style="width: 100px">
+              <img
+                class="card-img-top"
+                [src]="pokemon.pokemonsprites[0].sprites.front_female"
+                alt="female"
+              />
+              <div class="card-body">Female</div>
+            </div>
+            } @if (pokemon.pokemonsprites[0].sprites.front_shiny) {
+            <div class="card" style="width: 100px">
+              <img
+                class="card-img-top"
+                [src]="pokemon.pokemonsprites[0].sprites.front_shiny"
+                alt="shiny"
+              />
+              <div class="card-body">Shiny</div>
+            </div>
+            } @if (pokemon.pokemonsprites[0].sprites.front_shiny_female) {
+            <div class="card" style="width: 100px">
+              <img
+                class="card-img-top"
+                [src]="pokemon.pokemonsprites[0].sprites.front_shiny_female"
+                alt="shiny female"
+              />
+              <div class="card-body">Shiny Female</div>
+            </div>
+            }
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-12 col-md-6">
+      <div class="card">
+        <div class="card-body">
+          <div class="row">
+            <div class="col">
+              <h3>Height</h3>
+              <p>{{ pokemon.height | divide : 10 }} m</p>
+            </div>
+            <div class="col">
+              <h3>Weight</h3>
+              <p>{{ pokemon.weight | divide : 10 }} kg</p>
+            </div>
+          </div>
+          <div class="row">
+            <h3>Abilities</h3>
+            @for (ability of pokemon.pokemonabilities; track $index) {
+            <div class="col">
+              <div class="d-flex gap-2">
+                <span>
+                  {{ ability.ability.name }}
+                </span>
+                <!-- <button
+                  type="button"
+                  class="btn btn-secondary"
+                  data-bs-toggle="tooltip"
+                  data-bs-placement="top"
+                  data-bs-title="Tooltip on top"
+                >
+                  Tooltip on top
+                </button> -->
+                <i
+                  class="bi bi-info-circle"
+                  data-bs-toggle="tooltip"
+                  data-bs-placement="top"
+                  [attr.data-bs-title]="
+                    ability.ability.abilityeffecttexts[0].effect
+                  "
+                ></i>
+              </div>
+            </div>
+            }
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+}

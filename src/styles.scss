@@ -17,5 +17,15 @@ html {
     .dropdown-item {
       cursor: pointer;
     }
+
+    .img-md-50 {
+      width: 100%;
+      max-width: 100%;
+    }
+    @media (min-width: 768px) {
+      .img-md-50 {
+        width: 50%;
+      }
+    }
   }
 }

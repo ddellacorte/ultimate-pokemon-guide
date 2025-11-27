@@ -6,7 +6,10 @@ export interface PokemonCardDto {
 }
 
 export interface PokemonDto extends PokemonCardDto {
-  
+  height: number;
+  weight: number;
+  pokemonspecy: PokemonSpecy;
+  pokemonabilities: PokemonAbility[];
 }
 
 export interface PokemonCardType {
@@ -22,5 +25,30 @@ export interface PokemonCardSprite {
 }
 
 export interface PokemonSprites {
-  front_default: string;
+  front_default: string | null;
+  front_shiny: string | null;
+  front_female: string | null;
+  front_shiny_female: string | null;
+}
+
+export interface PokemonSpecy {
+  pokemonspeciesflavortexts: PokemonSpecyFlavorText[];
+  pokemons: PokemonCardDto[]
+}
+
+export interface PokemonSpecyFlavorText {
+  flavor_text: string;
+}
+
+export interface PokemonAbility {
+  ability: Ability;
+}
+
+export interface Ability {
+  name: string;
+  abilityeffecttexts: AbilityEffect[]
+}
+
+export interface AbilityEffect {
+  effect: string;
 }

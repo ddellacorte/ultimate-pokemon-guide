@@ -1,7 +1,16 @@
 import { Injectable } from '@angular/core';
 import { Apollo, gql } from 'apollo-angular';
+<<<<<<< HEAD:src/app/pages/pokemon/pokemon.service.ts
 import { finalize, map, Observable } from 'rxjs';
 import { LoaderService } from '../../shared/components/loader/loader.service';
+=======
+import { map, Observable } from 'rxjs';
+import {
+  PokemonListQueryResult,
+  PokemonQueryResult,
+} from '../../models/graph-response';
+import { FilterUtils } from '../../utils/filter.utils';
+>>>>>>> 593f8b1 (feat(pokemon): enhance Pokemon info display with new attributes and shiny toggle):src/app/components/pokemon/pokemon.service.ts
 import { PokemonFilter } from './models/pokemon-filter.model';
 import { PokemonCardDto, PokemonDto } from './models/pokemon.model';
 import { FilterUtils } from '../../shared/utils/filter.utils';
@@ -59,7 +68,7 @@ export class PokemonService {
 
   public getPokemonGraph(id: number): Observable<PokemonDto | undefined> {
     return this.apollo
-      .query<PokemonListQueryResult>({
+      .query<PokemonQueryResult>({
         query: gql`
           query {
             pokemon(
@@ -70,6 +79,8 @@ export class PokemonService {
             ) {
               id
               name
+              height
+              weight
               pokemontypes {
                 type {
                   name
@@ -77,6 +88,31 @@ export class PokemonService {
               }
               pokemonsprites {
                 sprites 
+              }
+              pokemonspecy {
+                pokemonspeciesflavortexts(where: {language_id: { _eq: 9 }}) {
+                  flavor_text
+                }
+                pokemons {
+                  id
+                  name
+                  pokemontypes {
+                    type {
+                      name
+                    }
+                  }
+                  pokemonsprites {
+                    sprites 
+                  }
+                }
+              }
+              pokemonabilities {
+                ability {
+                  name
+                  abilityeffecttexts(where: {language_id: { _eq: 9 }}) {
+                    effect
+                  }
+                }
               }
             }
           }
