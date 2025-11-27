@@ -10,6 +10,7 @@ export interface PokemonDto extends PokemonCardDto {
   weight: number;
   pokemonspecy: PokemonSpecy;
   pokemonabilities: PokemonAbility[];
+  pokemoncries: PokemonCry[];
 }
 
 export interface PokemonCardType {
@@ -51,4 +52,13 @@ export interface Ability {
 
 export interface AbilityEffect {
   effect: string;
+}
+
+export interface PokemonCry {
+  cries: Cry;
+}
+
+export interface Cry {
+  latest: string;
+  legacy: string;
 }

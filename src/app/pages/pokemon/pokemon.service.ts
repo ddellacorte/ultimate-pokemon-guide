@@ -1,20 +1,11 @@
 import { Injectable } from '@angular/core';
 import { Apollo, gql } from 'apollo-angular';
-<<<<<<< HEAD:src/app/pages/pokemon/pokemon.service.ts
 import { finalize, map, Observable } from 'rxjs';
-import { LoaderService } from '../../shared/components/loader/loader.service';
-=======
-import { map, Observable } from 'rxjs';
-import {
-  PokemonListQueryResult,
-  PokemonQueryResult,
-} from '../../models/graph-response';
-import { FilterUtils } from '../../utils/filter.utils';
->>>>>>> 593f8b1 (feat(pokemon): enhance Pokemon info display with new attributes and shiny toggle):src/app/components/pokemon/pokemon.service.ts
 import { PokemonFilter } from './models/pokemon-filter.model';
 import { PokemonCardDto, PokemonDto } from './models/pokemon.model';
 import { FilterUtils } from '../../shared/utils/filter.utils';
-import { PokemonListQueryResult } from '../../shared/models/graph-response';
+import { LoaderService } from '../../shared/components/loader/loader.service';
+import { PokemonListQueryResult, PokemonQueryResult } from '../../shared/models/graph-response';
 
 @Injectable({
   providedIn: 'root',
@@ -113,6 +104,9 @@ export class PokemonService {
                     effect
                   }
                 }
+              }
+              pokemoncries {
+                cries
               }
             }
           }

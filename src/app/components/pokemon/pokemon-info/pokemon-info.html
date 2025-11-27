@@ -80,41 +80,66 @@
         <div class="card-body">
           <div class="row">
             <div class="col">
-              <h3>Height</h3>
+              <h5>Height</h5>
               <p>{{ pokemon.height | divide : 10 }} m</p>
             </div>
             <div class="col">
-              <h3>Weight</h3>
+              <h5>Weight</h5>
               <p>{{ pokemon.weight | divide : 10 }} kg</p>
             </div>
           </div>
           <div class="row">
-            <h3>Abilities</h3>
+            <h5>Abilities</h5>
             @for (ability of pokemon.pokemonabilities; track $index) {
             <div class="col">
               <div class="d-flex gap-2">
-                <span>
+                <p>
                   {{ ability.ability.name }}
-                </span>
-                <!-- <button
-                  type="button"
-                  class="btn btn-secondary"
-                  data-bs-toggle="tooltip"
-                  data-bs-placement="top"
-                  data-bs-title="Tooltip on top"
-                >
-                  Tooltip on top
-                </button> -->
+                </p>
                 <i
                   class="bi bi-info-circle"
                   data-bs-toggle="tooltip"
                   data-bs-placement="top"
-                  [attr.data-bs-title]="
-                    ability.ability.abilityeffecttexts[0].effect
-                  "
+                  [ngbTooltip]="ability.ability.abilityeffecttexts[0].effect"
                 ></i>
               </div>
             </div>
+            }
+          </div>
+          <div class="row">
+            <h5>Cries</h5>
+            <div class="col">
+              <div class="d-flex gap-2">
+                <p>Latest</p>
+                <i
+                  role="button"
+                  (click)="playCry(pokemon.pokemoncries[0].cries.latest)"
+                  class="bi bi-fast-forward-circle"
+                ></i>
+              </div>
+            </div>
+            <div class="col">
+              <div class="d-flex gap-2">
+                <p>Legacy</p>
+                <i
+                  role="button"
+                  (click)="playCry(pokemon.pokemoncries[0].cries.legacy)"
+                  class="bi bi-fast-forward-circle"
+                ></i>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <h5>Types</h5>
+            @for (type of pokemon.pokemontypes; track $index) {
+            <span
+              class="w-25 badge text-capitalize mx-1"
+              [ngStyle]="{
+                'background-color': type.type.name | typeColor,
+                color: '#fff'
+              }"
+              >{{ type.type.name }}</span
+            >
             }
           </div>
         </div>
