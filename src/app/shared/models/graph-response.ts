@@ -1,3 +1,5 @@
+import { ItemCategory } from '../../pages/item/models/item-category.model';
+import { ItemDto } from '../../pages/item/models/item.model';
 import { NatureDto } from '../../pages/nature/models/nature.model';
 import {
   PokemonCardDto,
@@ -27,4 +29,12 @@ export interface NatureListQueryResult {
 
 export interface LanguageListQueryResult {
   language: LanguageDto[];
+}
+
+export interface ItemListQueryResult {
+  itemname: ItemDto[];
+}
+
+export interface CategoryListQueryResult {
+  itemcategory: ItemCategory[];
 }
