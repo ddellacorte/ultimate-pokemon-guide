@@ -5,7 +5,10 @@ import { PokemonFilter } from './models/pokemon-filter.model';
 import { PokemonCardDto, PokemonDto } from './models/pokemon.model';
 import { FilterUtils } from '../../shared/utils/filter.utils';
 import { LoaderService } from '../../shared/components/loader/loader.service';
-import { PokemonListQueryResult, PokemonQueryResult } from '../../shared/models/graph-response';
+import {
+  PokemonListQueryResult,
+  PokemonQueryResult,
+} from '../../shared/models/graph-response';
 
 @Injectable({
   providedIn: 'root',
@@ -74,7 +77,9 @@ export class PokemonService {
               weight
               pokemontypes {
                 type {
-                  name
+                  typenames(where: {language_id: { _eq: 9 }}) {
+                    name
+                  }
                 }
               }
               pokemonsprites {
@@ -89,7 +94,9 @@ export class PokemonService {
                   name
                   pokemontypes {
                     type {
-                      name
+                      typenames(where: {language_id: { _eq: 9 }}) {
+                        name
+                      }
                     }
                   }
                   pokemonsprites {

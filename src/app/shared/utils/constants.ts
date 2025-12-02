@@ -1,4 +1,5 @@
 import { Generation } from '../models/generation.model';
+import { LanguageFlag } from '../models/language.model';
 import { Type } from '../models/type';
 
 export const POKEAPIURL = 'https://pokeapi.co/api/v2/';
@@ -60,4 +61,19 @@ export const TYPES: Type[] = [
   { name: 'dark', color: '#705746' },
   { name: 'steel', color: '#B7B7CE' },
   { name: 'fairy', color: '#D685AD' },
+];
+export const LANGUAGES: LanguageFlag[] = [
+  { id: 1,  name: 'ja-Hrkt', flags: ['jp'] },
+  { id: 2,  name: 'roomaji', flags: ['jp'] },
+  { id: 3,  name: 'ko', flags: ['kr'] },
+  { id: 4,  name: 'zh-Hant', flags: ['tw', 'hk'] },
+  { id: 5,  name: 'fr', flags: ['fr'] },
+  { id: 6,  name: 'de', flags: ['de'] },
+  { id: 7,  name: 'es', flags: ['es', 'mx', 'ar'] },
+  { id: 8,  name: 'it', flags: ['it'] },
+  { id: 9,  name: 'en', flags: ['gb', 'us'] },
+  { id: 10, name: 'cs', flags: ['cz'] },
+  { id: 11, name: 'ja', flags: ['jp'] },
+  { id: 12, name: 'zh-Hans', flags: ['cn'] },
+  { id: 13, name: 'pt-BR', flags: ['pt', 'br'] },
 ];
