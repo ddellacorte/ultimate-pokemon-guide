@@ -1,8 +1,8 @@
 export interface PokemonCardDto {
   id: number;
   name: string;
-  pokemontypes: PokemonCardType[];
-  pokemonsprites: PokemonCardSprite[];
+  pokemontypes: PokemonType[];
+  pokemonsprites: PokemonSprite[];
 }
 
 export interface PokemonDto extends PokemonCardDto {
@@ -11,17 +11,24 @@ export interface PokemonDto extends PokemonCardDto {
   pokemonspecy: PokemonSpecy;
   pokemonabilities: PokemonAbility[];
   pokemoncries: PokemonCry[];
-}
-
-export interface PokemonCardType {
-  type: PokemonType;
+  pokemonstats: PokemonStat[];
 }
 
 export interface PokemonType {
-  name: string;
+  type: Type;
 }
 
-export interface PokemonCardSprite {
+export interface Type {
+  name: string;
+  TypeefficaciesByTargetTypeId: PokemonTypeEfficacies[];
+}
+
+export interface PokemonTypeEfficacies {
+  damage_factor: number;
+  type: Type;
+}
+
+export interface PokemonSprite {
   sprites: PokemonSprites;
 }
 
@@ -30,11 +37,21 @@ export interface PokemonSprites {
   front_shiny: string | null;
   front_female: string | null;
   front_shiny_female: string | null;
+  other: PokemonOtherSprites;
+}
+
+export interface PokemonOtherSprites {
+  "official-artwork": PokemonOtherSpritesOfficialArtwork;
+}
+
+export interface PokemonOtherSpritesOfficialArtwork {
+  front_default: string | null;
+  front_shiny: string | null;
 }
 
 export interface PokemonSpecy {
   pokemonspeciesflavortexts: PokemonSpecyFlavorText[];
-  pokemons: PokemonCardDto[]
+  pokemons: PokemonCardDto[];
 }
 
 export interface PokemonSpecyFlavorText {
@@ -47,7 +64,7 @@ export interface PokemonAbility {
 
 export interface Ability {
   name: string;
-  abilityeffecttexts: AbilityEffect[]
+  abilityeffecttexts: AbilityEffect[];
 }
 
 export interface AbilityEffect {
@@ -61,4 +78,13 @@ export interface PokemonCry {
 export interface Cry {
   latest: string;
   legacy: string;
+}
+
+export interface PokemonStat {
+  base_stat: number;
+  stat: Stat;
+}
+
+export interface Stat {
+  name: string;
 }

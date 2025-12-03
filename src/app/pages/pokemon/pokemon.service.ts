@@ -5,7 +5,10 @@ import { PokemonFilter } from './models/pokemon-filter.model';
 import { PokemonCardDto, PokemonDto } from './models/pokemon.model';
 import { FilterUtils } from '../../shared/utils/filter.utils';
 import { LoaderService } from '../../shared/components/loader/loader.service';
-import { PokemonListQueryResult, PokemonQueryResult } from '../../shared/models/graph-response';
+import {
+  PokemonListQueryResult,
+  PokemonQueryResult,
+} from '../../shared/models/graph-response';
 
 @Injectable({
   providedIn: 'root',
@@ -75,6 +78,12 @@ export class PokemonService {
               pokemontypes {
                 type {
                   name
+                  TypeefficaciesByTargetTypeId {
+                    damage_factor
+                    type {
+                      name
+                    }
+                  }
                 }
               }
               pokemonsprites {
@@ -108,6 +117,12 @@ export class PokemonService {
               pokemoncries {
                 cries
               }
+              pokemonstats {
+                base_stat
+                stat {
+                  name
+                }
+              }
             }
           }
         `,
@@ -115,6 +130,12 @@ export class PokemonService {
       .pipe(
         map((result) => {
           if (result.data) return result.data.pokemon[0];
+          return undefined;
+        }),
+        map((pokemon) => {
+          if (pokemon) {
+            return pokemon;
+          }
           return undefined;
         })
       );

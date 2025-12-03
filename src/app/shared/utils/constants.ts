@@ -1,5 +1,5 @@
 import { Generation } from '../models/generation.model';
-import { Type } from '../models/type';
+import { ColorType } from '../models/type';
 
 export const POKEAPIURL = 'https://pokeapi.co/api/v2/';
 export const POKEAPIGRAPHURL = `https://graphql.pokeapi.co/v1beta2`;
@@ -41,7 +41,7 @@ export const GENERATIONS: Generation[] = [
     symbol: 'ix',
   },
 ];
-export const TYPES: Type[] = [
+export const TYPES: ColorType[] = [
   { name: 'normal', color: '#A8A77A' },
   { name: 'fire', color: '#EE8130' },
   { name: 'water', color: '#6390F0' },

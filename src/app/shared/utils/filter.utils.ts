@@ -7,7 +7,8 @@ export class FilterUtils {
     let typeConditions = '';
     let searchCondition = '';
 
-    const idClause = '{ id: { _lt: 10000 } }';
+    // const idClause = '{ id: { _lt: 10000 } }';
+    const idClause = '{}';
 
     const { generations, types, search } = filter;
     if (generations && generations.length > 0) {

@@ -2,7 +2,7 @@ import { CommonModule } from '@angular/common';
 import { Component, EventEmitter, Output } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { Generation } from '../../../shared/models/generation.model';
-import { Type } from '../../../shared/models/type';
+import { ColorType } from '../../../shared/models/type';
 import { GENERATIONS, TYPES } from '../../../shared/utils/constants';
 import { PokemonFilter } from '../models/pokemon-filter.model';
 
@@ -15,7 +15,7 @@ import { PokemonFilter } from '../models/pokemon-filter.model';
 export class PokemonNavbar {
   private _shiny = false;
   public generations: Generation[] = GENERATIONS;
-  public types: Type[] = TYPES;
+  public types: ColorType[] = TYPES;
   public search = '';
   public generationFilter: string[] = [];
   public typeFilter: string[] = [];

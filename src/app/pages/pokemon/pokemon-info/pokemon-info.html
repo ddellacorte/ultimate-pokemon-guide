@@ -30,11 +30,14 @@
 </nav>
 
 <div class="container-fluid p-2">
-  <div class="row">
-    <div class="col-12 col-md-6">
+  <div class="row mb-1">
+    <div class="col-12 col-lg-4">
       <div class="card">
         <img
-          [src]="pokemon.pokemonsprites[0].sprites.front_default"
+          [src]="
+            pokemon.pokemonsprites[0].sprites.other['official-artwork']
+              .front_default ?? pokemon.pokemonsprites[0].sprites.front_default
+          "
           class="card-img-top w-50 mx-auto"
           [alt]="pokemon.name"
         />
@@ -43,7 +46,16 @@
             {{ pokemon.pokemonspecy.pokemonspeciesflavortexts[0].flavor_text }}
           </p>
           <div class="d-flex flex-wrap mx-auto gap-3 justify-content-center">
-            @if (pokemon.pokemonsprites[0].sprites.front_female) {
+            @if (pokemon.pokemonsprites[0].sprites.front_default) {
+            <div class="card" style="width: 100px">
+              <img
+                class="card-img-top"
+                [src]="pokemon.pokemonsprites[0].sprites.front_default"
+                alt="default"
+              />
+              <div class="card-body">Default</div>
+            </div>
+            } @if (pokemon.pokemonsprites[0].sprites.front_female) {
             <div class="card" style="width: 100px">
               <img
                 class="card-img-top"
@@ -75,7 +87,7 @@
         </div>
       </div>
     </div>
-    <div class="col-12 col-md-6">
+    <div class="col-12 col-lg-4">
       <div class="card">
         <div class="card-body">
           <div class="row">
@@ -93,30 +105,127 @@
             @for (ability of pokemon.pokemonabilities; track $index) {
             <div class="col">
               <div class="d-flex gap-2">
-                <span>
+                <p>
                   {{ ability.ability.name }}
-                </span>
-                <!-- <button
-                  type="button"
-                  class="btn btn-secondary"
-                  data-bs-toggle="tooltip"
-                  data-bs-placement="top"
-                  data-bs-title="Tooltip on top"
-                >
-                  Tooltip on top
-                </button> -->
+                </p>
                 <i
                   class="bi bi-info-circle"
                   data-bs-toggle="tooltip"
                   data-bs-placement="top"
-                  [attr.data-bs-title]="
-                    ability.ability.abilityeffecttexts[0].effect
-                  "
+                  [ngbTooltip]="ability.ability.abilityeffecttexts[0].effect"
                 ></i>
               </div>
             </div>
             }
           </div>
+          <div class="row">
+            <h3>Cries</h3>
+            @if(pokemon.pokemoncries[0].cries.latest) {
+            <div class="col">
+              <div class="d-flex gap-2">
+                <p>Latest</p>
+                <i
+                  role="button"
+                  (click)="playCry(pokemon.pokemoncries[0].cries.latest)"
+                  class="bi bi-fast-forward-circle"
+                ></i>
+              </div>
+            </div>
+            } @if (pokemon.pokemoncries[0].cries.legacy) {
+            <div class="col">
+              <div class="d-flex gap-2">
+                <p>Legacy</p>
+                <i
+                  role="button"
+                  (click)="playCry(pokemon.pokemoncries[0].cries.legacy)"
+                  class="bi bi-fast-forward-circle"
+                ></i>
+              </div>
+            </div>
+            }
+          </div>
+          <div class="row">
+            <h3>Types</h3>
+            @for (type of pokemon.pokemontypes; track $index) {
+            <p
+              class="w-25 badge text-capitalize mx-1"
+              [ngStyle]="{
+                'background-color': type.type.name | typeColor,
+                color: '#fff'
+              }"
+            >
+              {{ type.type.name }}
+            </p>
+            }
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-12 col-lg-4">
+      <div class="card">
+        <div class="card-body">
+          <div class="row">
+            <h3>Weakness and Resistances</h3>
+            @for (weakness of weaknesses; track $index) {
+            <div class="col-2">
+              <span>{{ weakness[0] }}</span>
+            </div>
+            <div class="col-10 d-flex flex-wrap mb-4">
+              @for (type of weakness[1]; track $index) {
+              <p
+                class="w-25 badge text-capitalize mx-1"
+                [ngStyle]="{
+                  'background-color': type | typeColor,
+                  color: '#fff'
+                }"
+              >
+                {{ type }}
+              </p>
+              }
+            </div>
+            }
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-12 col-md-6">
+      <div class="card">
+        <div class="card-body">
+          <h3>Base stats</h3>
+          @for (stat of pokemon.pokemonstats; track $index) {
+          <div class="row">
+            <div class="col-12 col-lg-3">
+              <span>{{ stat.stat.name }}</span>
+            </div>
+            <div class="col-12 col-lg-9">
+              <div
+                class="progress"
+                role="progressbar"
+                [aria-label]="stat.base_stat"
+                [aria-valuenow]="stat.base_stat"
+                [aria-valuemin]="0"
+                [aria-valuemax]="255"
+              >
+                <div
+                  class="progress-bar text-bg-warning"
+                  [style.width.%]="(stat.base_stat / 255) * 100"
+                >
+                  {{ stat.base_stat }}
+                </div>
+              </div>
+            </div>
+          </div>
+
+          }
+        </div>
+      </div>
+    </div>
+    <div class="col-12 col-md-6">
+      <div class="card">
+        <div class="card-body">
+          <h3>Evolution chain</h3>
         </div>
       </div>
     </div>
