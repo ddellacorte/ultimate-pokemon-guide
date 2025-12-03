@@ -2,7 +2,7 @@ import { CommonModule, TitleCasePipe } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { PokemonFilter } from './models/pokemon-filter.model';
-import { PokemonCardDto, PokemonCardType } from './models/pokemon.model';
+import { PokemonCardDto, PokemonType } from './models/pokemon.model';
 import { PokemonNavbar } from './pokemon-navbar/pokemon-navbar';
 import { PokemonService } from './pokemon.service';
 import { PadNumberPipe } from '../../shared/pipes/pad-number.pipe';
@@ -32,7 +32,7 @@ export class Pokemon implements OnInit {
 
   public ngOnInit(): void {
     this.pokemonService
-      .getPokemonListGraph(1, 0)
+      .getPokemonListGraph(151, 0)
       .subscribe((result: PokemonCardDto[] | undefined) => {
         if (result) this.pokemons = result;
       });
@@ -41,7 +41,7 @@ export class Pokemon implements OnInit {
   public getCardStyle(pokemon: PokemonCardDto): {
     [className: string]: string;
   } {
-    const types = pokemon.pokemontypes.map((t: PokemonCardType) => t.type.name);
+    const types = pokemon.pokemontypes.map((t: PokemonType) => t.type.name);
 
     if (types.length === 1) {
       const c = TYPES.find((t) => t.name === types[0])?.color || '#777';

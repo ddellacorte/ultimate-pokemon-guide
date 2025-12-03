@@ -1,10 +1,14 @@
 import { CommonModule, UpperCasePipe } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { NgbTooltipModule } from '@ng-bootstrap/ng-bootstrap';
+import {
+  NgbProgressbarModule,
+  NgbTooltipModule,
+} from '@ng-bootstrap/ng-bootstrap';
 import { DividePipe } from '../../../shared/pipes/divide.pipe';
 import { PadNumberPipe } from '../../../shared/pipes/pad-number.pipe';
 import { TypeColorPipe } from '../../../shared/pipes/type-color.pipe';
+import { TypeUtils } from '../../../shared/utils/type.utils';
 import { Destroy } from '../../destroy';
 import { PokemonDto } from '../models/pokemon.model';
 import { PokemonService } from '../pokemon.service';
@@ -17,6 +21,7 @@ import { PokemonService } from '../pokemon.service';
     CommonModule,
     DividePipe,
     NgbTooltipModule,
+    NgbProgressbarModule,
     TypeColorPipe,
   ],
   templateUrl: './pokemon-info.html',
@@ -24,6 +29,7 @@ import { PokemonService } from '../pokemon.service';
 })
 export class PokemonInfo extends Destroy implements OnInit {
   public pokemon?: PokemonDto;
+  public weaknesses = new Map<string, string[]>();
 
   public constructor(
     private readonly router: Router,
@@ -40,7 +46,12 @@ export class PokemonInfo extends Destroy implements OnInit {
         .getPokemonGraph(id)
         .pipe(this.takeUntilDestroy())
         .subscribe((pokemon) => {
-          this.pokemon = pokemon;
+          if (pokemon) {
+            this.pokemon = pokemon;
+            this.weaknesses = TypeUtils.calculateWeaknesses(
+              pokemon.pokemontypes
+            );
+          }
         });
   }
 

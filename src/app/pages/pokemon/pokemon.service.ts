@@ -77,8 +77,12 @@ export class PokemonService {
               weight
               pokemontypes {
                 type {
-                  typenames(where: {language_id: { _eq: 9 }}) {
-                    name
+                  name
+                  TypeefficaciesByTargetTypeId {
+                    damage_factor
+                    type {
+                      name
+                    }
                   }
                 }
               }
@@ -115,6 +119,12 @@ export class PokemonService {
               pokemoncries {
                 cries
               }
+              pokemonstats {
+                base_stat
+                stat {
+                  name
+                }
+              }
             }
           }
         `,
@@ -122,6 +132,12 @@ export class PokemonService {
       .pipe(
         map((result) => {
           if (result.data) return result.data.pokemon[0];
+          return undefined;
+        }),
+        map((pokemon) => {
+          if (pokemon) {
+            return pokemon;
+          }
           return undefined;
         })
       );

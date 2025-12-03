@@ -1,4 +1,4 @@
-export interface Type {
+export interface ColorType {
     name: string;
     color: string;
 }
