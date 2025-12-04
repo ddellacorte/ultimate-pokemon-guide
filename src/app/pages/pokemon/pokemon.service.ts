@@ -98,7 +98,9 @@ export class PokemonService {
                   name
                   pokemontypes {
                     type {
-                      name
+                      typenames(where: {language_id: { _eq: 9 }}) {
+                        name
+                      }
                     }
                   }
                   pokemonsprites {
