@@ -1,1 +1,33 @@
-<p>item works!</p>
+<app-item-navbar
+  (onFilterChange)="search($event)"
+></app-item-navbar>
+<div class="p-2 d-flex justify-content-center flex-wrap gap-3">
+  @for (item of items; track $index) {
+  <button
+    class="card text-center d-flex flex-row align-items-center"
+    style="width: 25rem"
+    (click)="selectItem(item)"
+  >
+    <img
+      [src]="item.item.itemsprites[0].sprites.default"
+      [alt]="item.name"
+      style="width: 4rem"
+    />
+    <h6 class="card-title" style="width: 9rem">
+      {{ item.name | titlecase }}
+    </h6>
+    <!-- <div class="d-flex gap-1 justify-content-center mb-2">
+      @for (type of item.pokemontypes; track $index) {
+      <span
+        class="badge text-capitalize"
+        [ngStyle]="{
+          'background-color': type.type.name | typeColor,
+          color: '#fff'
+        }"
+        >{{ type.type.name }}</span
+      >
+      }
+    </div> -->
+  </button>
+  }
+</div>

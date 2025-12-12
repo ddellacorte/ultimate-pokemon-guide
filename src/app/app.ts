@@ -13,7 +13,7 @@ import { AsyncPipe } from '@angular/common';
   styleUrl: './app.scss',
 })
 export class App {
-  loading$: Observable<boolean>;
+  public loading$ = new Observable<boolean>();
 
   constructor(private loader: LoaderService) {
     this.loading$ = this.loader.loading$;

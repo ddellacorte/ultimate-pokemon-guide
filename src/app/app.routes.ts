@@ -26,13 +26,6 @@ export const routes: Routes = [
         loadComponent: () =>
           import('./pages/nature/nature').then((m) => m.Nature),
       },
-      // {
-      //   path: ':id',
-      //   loadComponent: () =>
-      //     import('./components/pokemon/pokemon-info/pokemon-info').then(
-      //       (m) => m.PokemonInfo
-      //     ),
-      // },
     ],
   },
   {
