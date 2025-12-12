@@ -103,12 +103,66 @@ export class PokemonService {
                   pokemontypes {
                     type {
                       typenames(where: {language_id: { _eq: ${languageId} }}) {
+                capture_rate
+                pokemonspeciesflavortexts(where: {language_id: { _eq: 9 }}) {
+                  flavor_text
+                }
+                evolutionchain {
+                  pokemonspecies {
+                    evolution_chain_id
+                    id
+                    name
+                    evolves_from_species_id
+                    pokemonevolutions {
+                      pokemonspecy {
+                        id 
+                        name
+                        pokemons {
+                          pokemonforms {
+                            form_name
+                            name
+                          }
+                        }
+                      }
+                      PokemonspecyByPartySpeciesId {id name}
+                      region_id
+                      region {
                         name
                       }
+                      location {
+                        name
+                      }
+                      evolved_species_id
+                      min_level
+                      party_species_id
+                      base_form_id
+                      baseformid {
+                        id
+                        name
+                      }
+                      evolution_item_id
+                      item {
+                        id
+                        name
+                      }
+                      ItemByHeldItemId {
+                        name
+                      }
+                      type {
+                        name
+                      }
+                      region {
+                        name
+                      }
+                      gender {
+                        name
+                      }
+                      evolutiontrigger {
+                        evolutiontriggernames(where: {language_id: { _eq: 9 }}) {
+                          name
+                        }
+                      }
                     }
-                  }
-                  pokemonsprites {
-                    sprites 
                   }
                 }
               }
