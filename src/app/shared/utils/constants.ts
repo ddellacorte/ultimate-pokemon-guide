@@ -2,7 +2,6 @@ import { Generation } from '../models/generation.model';
 import { LanguageFlag } from '../models/language.model';
 import { ColorType } from '../models/type';
 import { LanguageFlag } from '../models/language.model';
-import { Type } from '../models/type';
 
 export const POKEAPIURL = 'https://pokeapi.co/api/v2/';
 export const POKEAPIGRAPHURL = `https://graphql.pokeapi.co/v1beta2`;
