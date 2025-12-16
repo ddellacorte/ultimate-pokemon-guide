@@ -101,10 +101,10 @@ export interface PokemonEvolutionChain {
 }
 
 export interface PokemonSpeciesInEvolutionChain extends BaseInfo {
-  pokemons: PokemonEvolutionSprite[];
   evolution_chain_id: number;
   evolves_from_species_id: number | null;
   pokemonevolutions: PokemonEvolution[];
+  pokemons: PokemonCardDto[];
 }
 
 export interface PokemonEvolution {

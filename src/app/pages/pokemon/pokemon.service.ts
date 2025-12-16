@@ -116,51 +116,47 @@ export class PokemonService {
                     name
                     evolves_from_species_id
                     pokemonevolutions {
-                      pokemonspecy {
-                        id 
-                        name
-                        pokemons {
-                          pokemonforms {
-                            form_name
-                            name
-                          }
-                        }
-                      }
-                      PokemonspecyByPartySpeciesId {id name}
-                      region_id
-                      region {
-                        name
-                      }
-                      location {
-                        name
-                      }
-                      evolved_species_id
                       min_level
-                      party_species_id
-                      base_form_id
-                      baseformid {
+                      min_affection
+                      min_beauty
+                      min_happiness
+                      time_of_day
+                      location {
                         id
                         name
                       }
                       evolution_item_id
                       item {
+                        itemnames(where: {language_id: { _eq: 9 }}) {
+                          id
+                          name
+                        }
+                      }
+                      ItemByHeldItemId {
                         id
                         name
                       }
-                      ItemByHeldItemId {
-                        name
-                      }
                       type {
+                        id
                         name
                       }
                       region {
+                        id
                         name
                       }
                       gender {
+                        id
                         name
                       }
                       evolutiontrigger {
                         evolutiontriggernames(where: {language_id: { _eq: 9 }}) {
+                          id
+                          name
+                        }
+                      }
+                      move {
+                        movenames(where: {language_id: { _eq: 9 }}) {
+                          id
                           name
                         }
                       }
