@@ -38,3 +38,8 @@ export interface ItemListQueryResult {
 export interface CategoryListQueryResult {
   itemcategory: ItemCategory[];
 }
+
+export interface BaseInfo {
+  id: number;
+  name: string;
+}

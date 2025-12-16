@@ -191,7 +191,7 @@
       </div>
     </div>
   </div>
-  <div class="row">
+  <div class="row mb-1">
     <div class="col-12 col-md-6">
       <div class="card">
         <div class="card-body">
@@ -227,7 +227,23 @@
     <div class="col-12 col-md-6">
       <div class="card">
         <div class="card-body">
+          <h3>Other info</h3>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row mb-1">
+    <div class="col-12">
+      <div class="card">
+        <div class="card-body">
           <h3>Evolution chain</h3>
+          @for (node of evolutionTree; track $index) {
+            <div class="card">
+              <div class="card-body">
+                <span>{{node.pokemon| json}}</span>
+              </div>
+            </div>
+          }
         </div>
       </div>
     </div>
