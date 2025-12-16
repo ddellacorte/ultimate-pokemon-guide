@@ -2,6 +2,7 @@ export interface EvolutionNode {
     id: number;
     pokemon: string;
     evolvesFrom: number | null;
+    sprite: string | null;
     item?: string;
     minLevel?: number;
     minAffection?: number;
@@ -11,4 +12,5 @@ export interface EvolutionNode {
     trigger?: string;
     move?: string;
     gender?: string;
+    location?: string;
 }

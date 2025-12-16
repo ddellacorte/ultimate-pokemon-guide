@@ -100,13 +100,14 @@ export interface PokemonEvolutionChain {
 }
 
 export interface PokemonSpeciesInEvolutionChain extends BaseInfo {
+  pokemons: PokemonEvolutionSprite[];
   evolution_chain_id: number;
   evolves_from_species_id: number | null;
   pokemonevolutions: PokemonEvolution[];
 }
 
 export interface PokemonEvolution {
-  location: BaseInfo | null;
+  location: PokemonEvolutionLocation | null;
   min_level: number | null;
   min_affection: number | null;
   min_beauty: number | null;
@@ -135,4 +136,12 @@ export interface PokemonEvolutionTrigger {
 
 export interface PokemonEvolutionMove {
   movenames: BaseInfo[];
+}
+
+export interface PokemonEvolutionSprite {
+  pokemonsprites: PokemonSprite[];
+}
+
+export interface PokemonEvolutionLocation {
+  locationnames: BaseInfo[];
 }

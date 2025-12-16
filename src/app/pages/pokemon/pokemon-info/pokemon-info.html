@@ -237,13 +237,59 @@
       <div class="card">
         <div class="card-body">
           <h3>Evolution chain</h3>
-          @for (node of evolutionTree; track $index) {
-            <div class="card">
+          <div class="d-flex flex-wrap justify-content-evenly">
+            @for (evolution of evolutionTree; track $index) {
+            <div class="card mb-1">
               <div class="card-body">
-                <span>{{node.pokemon| json}}</span>
+                <div class="d-flex flex-wrap align-items-center">
+                  @for (node of evolution; track $index) { @if (node.evolvesFrom
+                  == null) {
+                  <div class="text-center" style="width: 100px">
+                    <img
+                      class="card-img-top"
+                      [src]="node.sprite"
+                      alt="default"
+                    />
+                    <div>{{ node.pokemon }}</div>
+                  </div>
+                  } @else {
+                  <div class="text-center d-flex flex-column" style="width: 150px">
+                    @if (node.minLevel) {
+                      <span>level: {{node.minLevel}}</span>
+                    }
+                    @if (node.minAffection) {
+                      <span>affection: {{node.minAffection}}</span>
+                    }
+                    @if (node.minBeauty) {
+                      <span>beauty: {{node.minBeauty}}</span>
+                    }
+                    @if (node.minHappiness) {
+                      <span>happiness: {{node.minHappiness}}</span>
+                    }
+                    @if (node.timeOfDay) {
+                      <span>time: {{node.timeOfDay}}</span>
+                    }
+                    @if (node.gender) {
+                      <span>gender: {{node.gender}}</span>
+                    }
+                    @if (node.location) {
+                      <span>location: {{node.location}}</span>
+                    }
+                  </div>
+                  <div class="text-center" style="width: 100px">
+                    <img
+                      class="card-img-top"
+                      [src]="node.sprite"
+                      alt="default"
+                    />
+                    <span>{{ node.pokemon }}</span>
+                  </div>
+                  } }
+                </div>
               </div>
             </div>
-          }
+            }
+          </div>
         </div>
       </div>
     </div>
