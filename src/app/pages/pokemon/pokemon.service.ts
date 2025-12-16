@@ -111,6 +111,11 @@ export class PokemonService {
                 }
                 evolutionchain {
                   pokemonspecies {
+                    pokemons {
+                      pokemonsprites {
+                        sprites
+                      }
+                    }
                     evolution_chain_id
                     id
                     name
@@ -122,8 +127,10 @@ export class PokemonService {
                       min_happiness
                       time_of_day
                       location {
-                        id
-                        name
+                        locationnames(where: {language_id: { _eq: 9 }}) {
+                          id
+                          name
+                        }
                       }
                       evolution_item_id
                       item {
