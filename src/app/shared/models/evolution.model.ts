@@ -25,6 +25,6 @@ interface Location {
 }
 
 interface Item {
-    name: string;
-    sprite: string;
+  name: string;
+  sprite: string;
 }
