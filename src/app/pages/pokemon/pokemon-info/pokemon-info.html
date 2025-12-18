@@ -42,9 +42,11 @@
           [alt]="pokemon.name"
         />
         <div class="card-body">
+          @if (pokemon.pokemonspecy.pokemonspeciesflavortexts.length) {
           <p class="card-text">
             {{ pokemon.pokemonspecy.pokemonspeciesflavortexts[0].flavor_text }}
           </p>
+          }
           <div class="d-flex flex-wrap mx-auto gap-3 justify-content-center">
             @if (pokemon.pokemonsprites[0].sprites.front_default) {
             <div class="card" style="width: 100px">
@@ -178,7 +180,7 @@
                   'background-color': type | typeColor,
                   color: '#fff'
                 }"
-              >
+              > 
                 {{ type }}
               </p>
               }

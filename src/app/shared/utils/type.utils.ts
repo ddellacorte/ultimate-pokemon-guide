@@ -6,6 +6,8 @@ export class TypeUtils {
   ): Map<string, string[]> {
     const typeDamageMap = new Map<string, number>(); // type name > multiplier
     for (const type of types) {
+      console.log({type});
+      
       const targetTypes = type.type.TypeefficaciesByTargetTypeId;
       for (const efficacy of targetTypes) {
         if (typeDamageMap.has(efficacy.type.name)) {

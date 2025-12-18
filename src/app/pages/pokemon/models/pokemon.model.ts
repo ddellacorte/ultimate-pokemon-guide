@@ -23,6 +23,10 @@ export interface Type {
   TypeefficaciesByTargetTypeId: PokemonTypeEfficacies[];
 }
 
+export interface TypeName {
+  typenames: Type[];
+}
+
 export interface PokemonTypeEfficacies {
   damage_factor: number;
   type: Type;

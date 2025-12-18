@@ -60,7 +60,10 @@ export class PokemonService {
       );
   }
 
-  public getPokemonGraph(id: number): Observable<PokemonDto | undefined> {
+  public getPokemonGraph(
+    id: number,
+    languageId: number
+  ): Observable<PokemonDto | undefined> {
     return this.apollo
       .query<PokemonQueryResult>({
         query: gql`
@@ -90,7 +93,8 @@ export class PokemonService {
                 sprites 
               }
               pokemonspecy {
-                pokemonspeciesflavortexts(where: {language_id: { _eq: 9 }}) {
+                id
+                pokemonspeciesflavortexts(where: {language_id: { _eq: ${languageId} }}) {
                   flavor_text
                 }
                 pokemons {
@@ -98,7 +102,7 @@ export class PokemonService {
                   name
                   pokemontypes {
                     type {
-                      typenames(where: {language_id: { _eq: 9 }}) {
+                      typenames(where: {language_id: { _eq: ${languageId} }}) {
                         name
                       }
                     }
