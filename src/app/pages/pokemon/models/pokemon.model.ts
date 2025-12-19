@@ -1,6 +1,7 @@
-export interface PokemonCardDto {
-  id: number;
-  name: string;
+import { BaseInfo } from "../../../shared/models/graph-response";
+import { ItemSpriteDto } from "../../item/models/item.model";
+
+export interface PokemonCardDto extends BaseInfo {
   pokemontypes: PokemonType[];
   pokemonsprites: PokemonSprite[];
 }
@@ -56,6 +57,8 @@ export interface PokemonOtherSpritesOfficialArtwork {
 export interface PokemonSpecy {
   pokemonspeciesflavortexts: PokemonSpecyFlavorText[];
   pokemons: PokemonCardDto[];
+  capture_rate: number;
+  evolutionchain: PokemonEvolutionChain;
 }
 
 export interface PokemonSpecyFlavorText {
@@ -91,4 +94,65 @@ export interface PokemonStat {
 
 export interface Stat {
   name: string;
+}
+
+export interface PokemonEvolutionChain {
+  pokemonspecies: PokemonSpeciesInEvolutionChain[];
+}
+
+export interface PokemonSpeciesInEvolutionChain extends BaseInfo {
+  pokemons: PokemonEvolutionSprite[];
+  evolution_chain_id: number;
+  evolves_from_species_id: number | null;
+  pokemonevolutions: PokemonEvolution[];
+}
+
+export interface PokemonEvolution {
+  location: PokemonEvolutionLocation | null;
+  min_level: number | null;
+  min_affection: number | null;
+  min_beauty: number | null;
+  min_happiness: number | null;
+  time_of_day: string | null;
+  party_species_id: number | null;
+  base_form_id: number | null;
+  baseformid: BaseInfo | null;
+  evolution_item_id: number | null;
+  item: PokemonEvolutionItem | null;
+  ItemByHeldItemId: BaseInfo | null;
+  type: BaseInfo | null;
+  region: BaseInfo | null;
+  gender: BaseInfo | null;
+  evolutiontrigger: PokemonEvolutionTrigger | null;
+  move: PokemonEvolutionMove | null;
+}
+
+export interface PokemonEvolutionItem {
+  itemsprites: ItemSpriteDto[];
+  itemnames: BaseInfo[];
+}
+
+export interface PokemonEvolutionTrigger {
+  evolutiontriggernames: BaseInfo[];
+}
+
+export interface PokemonEvolutionMove {
+  movenames: BaseInfo[];
+}
+
+export interface PokemonEvolutionSprite {
+  pokemonsprites: PokemonSprite[];
+}
+
+export interface PokemonEvolutionLocation {
+  locationnames: BaseInfo[];
+  region: PokemonEvolutionRegionLocation;
+}
+
+export interface PokemonEvolutionRegionLocation {
+  generation: PokemonEvolutionRegionLocationNames;
+}
+
+export interface PokemonEvolutionRegionLocationNames {
+  generationnames: BaseInfo[];
 }

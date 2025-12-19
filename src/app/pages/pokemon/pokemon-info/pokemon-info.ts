@@ -6,10 +6,12 @@ import {
   NgbTooltipModule,
 } from '@ng-bootstrap/ng-bootstrap';
 import { switchMap } from 'rxjs';
+import { EvolutionNode } from '../../../shared/models/evolution.model';
 import { DividePipe } from '../../../shared/pipes/divide.pipe';
 import { PadNumberPipe } from '../../../shared/pipes/pad-number.pipe';
 import { TypeColorPipe } from '../../../shared/pipes/type-color.pipe';
 import { LanguageService } from '../../../shared/services/language.service';
+import { EvolutionUtils } from '../../../shared/utils/evolution.utils';
 import { TypeUtils } from '../../../shared/utils/type.utils';
 import { Destroy } from '../../destroy';
 import { PokemonDto } from '../models/pokemon.model';
@@ -34,6 +36,7 @@ export class PokemonInfo extends Destroy implements OnInit {
 
   public pokemon?: PokemonDto;
   public weaknesses = new Map<string, string[]>();
+  public evolutionTree?: EvolutionNode[][];
 
   public constructor(
     private readonly router: Router,
@@ -55,6 +58,9 @@ export class PokemonInfo extends Destroy implements OnInit {
         if (pokemon) {
           this.pokemon = pokemon;
           this.weaknesses = TypeUtils.calculateWeaknesses(pokemon.pokemontypes);
+          this.evolutionTree = EvolutionUtils.buildEvolutionTree(
+            pokemon.pokemonspecy.evolutionchain.pokemonspecies
+          );
         }
       });
   }

@@ -160,6 +160,12 @@
             </p>
             }
           </div>
+          <div class="row">
+            <div class="col">
+              <h3>Capture Rate</h3>
+              <p>{{ pokemon.pokemonspecy.capture_rate }}</p>
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -191,7 +197,7 @@
       </div>
     </div>
   </div>
-  <div class="row">
+  <div class="row mb-1">
     <div class="col-12 col-md-6">
       <div class="card">
         <div class="card-body">
@@ -227,7 +233,124 @@
     <div class="col-12 col-md-6">
       <div class="card">
         <div class="card-body">
+          <h3>Other Forms</h3>
+          <div class="d-flex flex-wrap mx-auto gap-3 justify-content-center">
+            @for (other of pokemon.pokemonspecy.pokemons; track $index) { @if
+            (other.pokemonsprites[0].sprites.front_default) {
+            <div class="card" style="width: 100px">
+              <img
+                class="card-img-top"
+                [src]="other.pokemonsprites[0].sprites.front_default"
+                alt="default"
+              />
+              <div class="card-body">{{ other.name }}</div>
+            </div>
+            }@if (other.pokemonsprites[0].sprites.front_shiny) {
+            <div class="card" style="width: 100px">
+              <img
+                class="card-img-top"
+                [src]="other.pokemonsprites[0].sprites.front_shiny"
+                alt="shiny"
+              />
+              <div class="card-body">{{ other.name }} shiny</div>
+            </div>
+            } }
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row mb-1">
+    <div class="col-12">
+      <div class="card">
+        <div class="card-body">
           <h3>Evolution chain</h3>
+          <div class="d-flex flex-wrap justify-content-evenly">
+            @for (evolution of evolutionTree; track $index) {
+            <div class="card mb-1">
+              <div class="card-body">
+                <div class="d-flex flex-wrap align-items-center">
+                  @for (node of evolution; track $index) { @if (node.evolvesFrom
+                  == null) {
+                  <div class="text-center" style="width: 100px">
+                    <img
+                      class="card-img-top"
+                      [src]="node.sprite"
+                      alt="default"
+                    />
+                    <div>{{ node.pokemon }}</div>
+                  </div>
+                  } @else {
+                  <div class="d-flex flex-column">
+                    @for (method of node.methods; track $index) {
+                    <div
+                      class="text-center d-flex flex-column"
+                      style="width: 150px"
+                    >
+                      @if (method.trigger) {
+                      <small class="text-sm"
+                        >trigger: {{ method.trigger }}</small
+                      >
+                      }@if (method.minLevel) {
+                      <small class="text-sm"
+                        >level: {{ method.minLevel }}</small
+                      >
+                      } @if (method.item) {
+                      <div
+                        class="d-flex align-items-center justify-content-center"
+                      >
+                        <img
+                          [src]="method.item.sprite"
+                          [alt]="method.item.name"
+                        />
+                        <small class="text-sm">
+                          {{ method.item.name }}
+                        </small>
+                      </div>
+                      }@if (method.move) {
+                      <small class="text-sm">move: {{ method.move }}</small>
+                      } @if (method.minAffection) {
+                      <small class="text-sm"
+                        >affection: {{ method.minAffection }}</small
+                      >
+                      } @if (method.minBeauty) {
+                      <small class="text-sm"
+                        >beauty: {{ method.minBeauty }}</small
+                      >
+                      } @if (method.minHappiness) {
+                      <small class="text-sm"
+                        >happiness: {{ method.minHappiness }}</small
+                      >
+                      } @if (method.timeOfDay) {
+                      <small class="text-sm"
+                        >time: {{ method.timeOfDay }}</small
+                      >
+                      } @if (method.gender) {
+                      <small class="text-sm">gender: {{ method.gender }}</small>
+                      } @if (method.location) {
+                      <small class="text-sm"
+                        >{{ method.location.name }} ({{
+                          method.location.generation
+                        }})</small
+                      >
+                      }
+                    </div>
+                    }
+                  </div>
+                  <div class="text-center" style="width: 100px">
+                    <img
+                      class="card-img-top"
+                      [src]="node.sprite"
+                      alt="default"
+                    />
+                    <span>{{ node.pokemon }}</span>
+                  </div>
+                  } }
+                </div>
+              </div>
+            </div>
+            }
+          </div>
         </div>
       </div>
     </div>
