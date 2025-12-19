@@ -105,6 +105,13 @@ export class PokemonService {
                     }
                   }
                 }   
+                pokemons(where: {is_default:{_eq: false}}) {
+                  is_default
+                  name
+                  pokemonsprites {
+                    sprites 
+                  }
+                }
                 capture_rate
                 pokemonspeciesflavortexts(where: {language_id: { _eq: 9 }}) {
                   flavor_text
