@@ -1,13 +1,12 @@
 import { CommonModule, TitleCasePipe } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { PokemonFilter } from './models/pokemon-filter.model';
-import { PokemonCardDto, PokemonType } from './models/pokemon.model';
-import { PokemonNavbar } from './pokemon-navbar/pokemon-navbar';
-import { PokemonService } from './pokemon.service';
 import { PadNumberPipe } from '../../shared/pipes/pad-number.pipe';
 import { TypeColorPipe } from '../../shared/pipes/type-color.pipe';
 import { TYPES } from '../../shared/utils/constants';
+import { PokemonCardDto, PokemonType } from './models/pokemon.model';
+import { PokemonNavbar } from './pokemon-navbar/pokemon-navbar';
+import { PokemonService } from './pokemon.service';
 
 @Component({
   selector: 'app-pokemon',
@@ -60,14 +59,6 @@ export class Pokemon implements OnInit {
       background: `linear-gradient(45deg, ${c1}55, ${c2}55)`,
       backdropFilter: 'brightness(1.15)',
     };
-  }
-
-  public search(filter: PokemonFilter): void {
-    this.pokemonService
-      .getPokemonListGraph(250, 0, filter)
-      .subscribe((result: PokemonCardDto[] | undefined) => {
-        if (result) this.pokemons = result;
-      });
   }
 
   public selectPokemon(pokemon: PokemonCardDto): void {
