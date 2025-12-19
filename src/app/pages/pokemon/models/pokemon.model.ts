@@ -56,6 +56,7 @@ export interface PokemonOtherSpritesOfficialArtwork {
 
 export interface PokemonSpecy {
   pokemonspeciesflavortexts: PokemonSpecyFlavorText[];
+  pokemons: PokemonCardDto[];
   capture_rate: number;
   evolutionchain: PokemonEvolutionChain;
 }

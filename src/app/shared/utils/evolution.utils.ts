@@ -26,36 +26,8 @@ export class EvolutionUtils {
             ].front_default ??
             pokemon.pokemons[0].pokemonsprites[0].sprites.front_default,
         };
-        // if (pokemon.pokemonevolutions.length) {
-        //   const pokemonEvolution: PokemonEvolution =
-        //     pokemon.pokemonevolutions[0];
-        //   if (pokemon.pokemons)
-        //     if (pokemonEvolution.min_level)
-        //       node.minLevel = pokemonEvolution.min_level;
-        //   if (pokemonEvolution.min_affection)
-        //     node.minAffection = pokemonEvolution.min_affection;
-        //   if (pokemonEvolution.min_beauty)
-        //     node.minBeauty = pokemonEvolution.min_beauty;
-        //   if (pokemonEvolution.min_happiness)
-        //     node.minHappiness = pokemonEvolution.min_happiness;
-        //   if (pokemonEvolution.time_of_day)
-        //     node.timeOfDay = pokemonEvolution.time_of_day;
-        //   if (pokemonEvolution.evolutiontrigger)
-        //     node.trigger =
-        //       pokemonEvolution.evolutiontrigger.evolutiontriggernames[0].name;
-        //   if (pokemonEvolution.item) {
-        //     node.item = pokemonEvolution.item.itemnames[0].name;
-        //     node.itemSprite =
-        //       pokemonEvolution.item.itemsprites[0].sprites.default;
-        //   }
-        //   if (pokemonEvolution.move)
-        //     node.move = pokemonEvolution.move.movenames[0].name;
-        //   if (pokemonEvolution.gender)
-        //     node.gender = pokemonEvolution.gender.name;
-        //   if (pokemonEvolution.location)
-        //     node.location = pokemonEvolution.location.locationnames[0].name;
-        // }
         node.methods = _condenseEvolutionMethods(pokemon.pokemonevolutions);
+        
         return node;
       });
       nodes.push(linearNodes);
@@ -93,24 +65,6 @@ export class EvolutionUtils {
             ].front_default ??
             current.pokemons[0].pokemonsprites[0].sprites.front_default,
         };
-
-        // const evo = current.pokemonevolutions[0];
-        // if (evo) {
-        //   if (evo.min_level) node.minLevel = evo.min_level;
-        //   if (evo.min_beauty) node.minBeauty = evo.min_beauty;
-        //   if (evo.min_happiness) node.minHappiness = evo.min_happiness;
-        //   if (evo.min_affection) node.minAffection = evo.min_affection;
-        //   if (evo.time_of_day) node.timeOfDay = evo.time_of_day;
-        //   if (evo.item) {
-        //     node.item = evo.item.itemnames[0].name;
-        //     node.itemSprite = evo.item.itemsprites[0].sprites.default;
-        //   }
-        //   if (evo.gender) node.gender = evo.gender.name;
-        //   if (evo.move) node.move = evo.move.movenames[0].name;
-        //   if (evo.location) node.location = evo.location.locationnames[0].name;
-        //   if (evo.evolutiontrigger)
-        //     node.trigger = evo.evolutiontrigger.evolutiontriggernames[0].name;
-        // }
         node.methods = _condenseEvolutionMethods(current.pokemonevolutions);
 
         const newPath = [...path, node];
@@ -197,6 +151,7 @@ function _condenseEvolutionMethods(
     if (evo.min_beauty) method.minBeauty = evo.min_beauty;
     if (evo.min_happiness) method.minHappiness = evo.min_happiness;
     if (evo.gender) method.gender = evo.gender.name;
+    if (evo.move) method.move = evo.move.movenames[0].name;
 
     // evita duplicati identici
     const exists = methods.some(

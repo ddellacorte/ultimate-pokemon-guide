@@ -16,6 +16,7 @@ export interface EvolutionMethod {
   minHappiness?: number;
   timeOfDay?: string;
   gender?: string;
+  move?: string;
 }
 
 interface Location {

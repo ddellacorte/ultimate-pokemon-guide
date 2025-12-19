@@ -78,6 +78,7 @@ export class PokemonService {
               name
               height
               weight
+              is_default
               pokemontypes {
                 type {
                   name
@@ -93,16 +94,13 @@ export class PokemonService {
                 sprites 
               }
               pokemonspecy {
-                id
-                pokemonspeciesflavortexts(where: {language_id: { _eq: ${languageId} }}) {
-                  flavor_text
-                }
-                pokemons {
-                  id
+                pokemons(where: {is_default:{_eq: false}}) {
+                  is_default
                   name
-                  pokemontypes {
-                    type {
-                      typenames(where: {language_id: { _eq: ${languageId} }}) {
+                  pokemonsprites {
+                    sprites 
+                  }
+                }
                 capture_rate
                 pokemonspeciesflavortexts(where: {language_id: { _eq: 9 }}) {
                   flavor_text
