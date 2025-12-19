@@ -253,29 +253,83 @@
                     <div>{{ node.pokemon }}</div>
                   </div>
                   } @else {
-                  <div class="text-center d-flex flex-column" style="width: 150px">
-                    @if (node.minLevel) {
-                      <span>level: {{node.minLevel}}</span>
-                    }
-                    @if (node.minAffection) {
-                      <span>affection: {{node.minAffection}}</span>
-                    }
-                    @if (node.minBeauty) {
-                      <span>beauty: {{node.minBeauty}}</span>
-                    }
-                    @if (node.minHappiness) {
-                      <span>happiness: {{node.minHappiness}}</span>
-                    }
-                    @if (node.timeOfDay) {
-                      <span>time: {{node.timeOfDay}}</span>
-                    }
-                    @if (node.gender) {
-                      <span>gender: {{node.gender}}</span>
-                    }
-                    @if (node.location) {
-                      <span>location: {{node.location}}</span>
+                  <div class="d-flex flex-column">
+                    @for (method of node.methods; track $index) {
+                    <div
+                      class="text-center d-flex flex-column"
+                      style="width: 150px"
+                    >
+                      @if (method.minLevel) {
+                      <small class="text-sm"
+                        >level: {{ method.minLevel }}</small
+                      >
+                      } @if (method.item) {
+                      <div
+                        class="d-flex align-items-center justify-content-center"
+                      >
+                        <img
+                          [src]="method.item.sprite"
+                          [alt]="method.item.name"
+                        />
+                        <small class="text-sm">
+                          {{ method.item.name }}
+                        </small>
+                      </div>
+                      } @if (method.minAffection) {
+                      <small class="text-sm"
+                        >affection: {{ method.minAffection }}</small
+                      >
+                      } @if (method.minBeauty) {
+                      <small class="text-sm"
+                        >beauty: {{ method.minBeauty }}</small
+                      >
+                      } @if (method.minHappiness) {
+                      <small class="text-sm"
+                        >happiness: {{ method.minHappiness }}</small
+                      >
+                      } @if (method.timeOfDay) {
+                      <small class="text-sm"
+                        >time: {{ method.timeOfDay }}</small
+                      >
+                      } @if (method.gender) {
+                      <small class="text-sm">gender: {{ method.gender }}</small>
+                      } @if (method.location) {
+                      <small class="text-sm"
+                        >{{ method.location.name }} ({{
+                          method.location.generation
+                        }})</small
+                      >
+                      }
+                    </div>
                     }
                   </div>
+                  <!-- <div
+                    class="text-center d-flex flex-column"
+                    style="width: 150px"
+                  >
+                    @if (node.minLevel) {
+                    <small class="text-sm">level: {{ node.minLevel }}</small>
+                    } @if (node.item) {
+                    <div class="d-flex align-items-center justify-content-center">
+                      <img [src]="node.itemSprite" [alt]="node.item" />
+                      <small class="text-sm">
+                        {{ node.item }}
+                      </small>
+                    </div>
+                    } @if (node.minAffection) {
+                    <small class="text-sm">affection: {{ node.minAffection }}</small>
+                    } @if (node.minBeauty) {
+                    <small class="text-sm">beauty: {{ node.minBeauty }}</small>
+                    } @if (node.minHappiness) {
+                    <small class="text-sm">happiness: {{ node.minHappiness }}</small>
+                    } @if (node.timeOfDay) {
+                    <small class="text-sm">time: {{ node.timeOfDay }}</small>
+                    } @if (node.gender) {
+                    <small class="text-sm">gender: {{ node.gender }}</small>
+                    } @if (node.location) {
+                    <small class="text-sm">location: {{ node.location }}</small>
+                    }
+                  </div> -->
                   <div class="text-center" style="width: 100px">
                     <img
                       class="card-img-top"

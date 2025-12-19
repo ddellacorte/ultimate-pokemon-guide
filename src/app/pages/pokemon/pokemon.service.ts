@@ -129,12 +129,23 @@ export class PokemonService {
                           id
                           name
                         }
+                        region {
+                          generation {
+                            generationnames(where: {language_id: { _eq: 9 }}) {
+                              id
+                              name
+                            }
+                          }
+                        }
                       }
                       evolution_item_id
                       item {
                         itemnames(where: {language_id: { _eq: 9 }}) {
                           id
                           name
+                        }
+                        itemsprites {
+                          sprites
                         }
                       }
                       ItemByHeldItemId {

@@ -2,6 +2,8 @@
   (onFilterChange)="search($event)"
   (onShinyChange)="shiny = $event"
 ></app-pokemon-navbar>
+  <div id="smoobuCalendarIframe">  <link rel="stylesheet" type="text/css" href="https://login.smoobu.com/css/singleCalendarWidgetIframe.css">  <iframe class="smallDevices" height="540px" width="280px" src="https://login.smoobu.com/it/cockpit/widget/show-calendar-iframe/3077711/40cb771ce71fe70f46361f869cf62d24a1ca6d878979f30c474be2be1024ee98"></iframe>  <iframe class="bigDevices" height="600px" width="1000px" src="https://login.smoobu.com/it/cockpit/widget/show-calendar-iframe/3077711/40cb771ce71fe70f46361f869cf62d24a1ca6d878979f30c474be2be1024ee98"></iframe></div>
+
 <div class="p-2 d-flex justify-content-center flex-wrap gap-3">
   @for (pokemon of pokemons; track $index) {
   <button

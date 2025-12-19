@@ -1,4 +1,5 @@
 import { BaseInfo } from "../../../shared/models/graph-response";
+import { ItemSpriteDto } from "../../item/models/item.model";
 
 export interface PokemonCardDto extends BaseInfo {
   pokemontypes: PokemonType[];
@@ -55,7 +56,6 @@ export interface PokemonOtherSpritesOfficialArtwork {
 
 export interface PokemonSpecy {
   pokemonspeciesflavortexts: PokemonSpecyFlavorText[];
-  // pokemons: PokemonCardDto[];
   capture_rate: number;
   evolutionchain: PokemonEvolutionChain;
 }
@@ -127,6 +127,7 @@ export interface PokemonEvolution {
 }
 
 export interface PokemonEvolutionItem {
+  itemsprites: ItemSpriteDto[];
   itemnames: BaseInfo[];
 }
 
@@ -144,4 +145,13 @@ export interface PokemonEvolutionSprite {
 
 export interface PokemonEvolutionLocation {
   locationnames: BaseInfo[];
+  region: PokemonEvolutionRegionLocation;
+}
+
+export interface PokemonEvolutionRegionLocation {
+  generation: PokemonEvolutionRegionLocationNames;
+}
+
+export interface PokemonEvolutionRegionLocationNames {
+  generationnames: BaseInfo[];
 }
