@@ -78,7 +78,6 @@ export class PokemonService {
               name
               height
               weight
-              is_default
               pokemontypes {
                 type {
                   name
@@ -97,95 +96,8 @@ export class PokemonService {
                 pokemons(where: {is_default:{_eq: false}}) {
                   is_default
                   name
-                  pokemontypes {
-                    type {
-                      typenames(where: {language_id: { _eq: ${languageId} }}) {
-                        name
-                      }
-                    }
-                  }
-                }   
-                pokemons(where: {is_default:{_eq: false}}) {
-                  is_default
-                  name
                   pokemonsprites {
                     sprites 
-                  }
-                }
-                capture_rate
-                pokemonspeciesflavortexts(where: {language_id: { _eq: 9 }}) {
-                  flavor_text
-                }
-                evolutionchain {
-                  pokemonspecies {
-                    pokemons {
-                      pokemonsprites {
-                        sprites
-                      }
-                    }
-                    evolution_chain_id
-                    id
-                    name
-                    evolves_from_species_id
-                    pokemonevolutions {
-                      min_level
-                      min_affection
-                      min_beauty
-                      min_happiness
-                      time_of_day
-                      location {
-                        locationnames(where: {language_id: { _eq: 9 }}) {
-                          id
-                          name
-                        }
-                        region {
-                          generation {
-                            generationnames(where: {language_id: { _eq: 9 }}) {
-                              id
-                              name
-                            }
-                          }
-                        }
-                      }
-                      evolution_item_id
-                      item {
-                        itemnames(where: {language_id: { _eq: 9 }}) {
-                          id
-                          name
-                        }
-                        itemsprites {
-                          sprites
-                        }
-                      }
-                      ItemByHeldItemId {
-                        id
-                        name
-                      }
-                      type {
-                        id
-                        name
-                      }
-                      region {
-                        id
-                        name
-                      }
-                      gender {
-                        id
-                        name
-                      }
-                      evolutiontrigger {
-                        evolutiontriggernames(where: {language_id: { _eq: 9 }}) {
-                          id
-                          name
-                        }
-                      }
-                      move {
-                        movenames(where: {language_id: { _eq: 9 }}) {
-                          id
-                          name
-                        }
-                      }
-                    }
                   }
                 }
                 capture_rate
